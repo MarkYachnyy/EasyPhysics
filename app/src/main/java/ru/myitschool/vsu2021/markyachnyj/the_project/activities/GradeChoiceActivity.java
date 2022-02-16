@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 
-public class MainActivity extends AppCompatActivity {
+public class GradeChoiceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_grade_choice);
     }
 }
