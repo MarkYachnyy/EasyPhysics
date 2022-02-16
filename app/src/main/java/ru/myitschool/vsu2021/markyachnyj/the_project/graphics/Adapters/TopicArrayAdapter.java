@@ -1,4 +1,4 @@
-package ru.myitschool.vsu2021.markyachnyj.the_project.graphics;
+package ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -19,6 +19,7 @@ public class TopicArrayAdapter extends ArrayAdapter<Topic> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        
         return super.getView(position, convertView, parent);
     }
 }

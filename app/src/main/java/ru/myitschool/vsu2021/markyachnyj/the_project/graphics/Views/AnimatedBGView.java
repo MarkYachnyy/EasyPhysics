@@ -1,4 +1,4 @@
-package ru.myitschool.vsu2021.markyachnyj.the_project.graphics;
+package ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
