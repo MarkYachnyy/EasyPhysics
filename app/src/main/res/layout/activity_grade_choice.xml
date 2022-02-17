@@ -26,6 +26,7 @@
             android:layout_height="0sp"
             android:layout_weight="11"
             android:dividerHeight="0sp"
-            android:divider="@color/transparent"/>
+            android:divider="@color/transparent"
+            android:scrollbarSize="0sp"/>
     </LinearLayout>
 </FrameLayout>
