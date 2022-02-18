@@ -2,13 +2,17 @@ package ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
+
+import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 
 public class AnimatedBGView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -29,11 +33,14 @@ public class AnimatedBGView extends SurfaceView implements SurfaceHolder.Callbac
         super(context);
         getHolder().addCallback(this);
         drawThread = new DrawThread();
-        offset_x=0;
-        offset_y=0;
-        step_x=1;
-        step_y=1;
-        step_time_ms=11;
+        setDefaultParams();
+    }
+
+    public AnimatedBGView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        getHolder().addCallback(this);
+        drawThread = new DrawThread();
+        setDefaultParams();
     }
 
     public void setMotionParams(int step_x, int step_y, int step_time_ms){
@@ -47,6 +54,15 @@ public class AnimatedBGView extends SurfaceView implements SurfaceHolder.Callbac
         src_rect = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
         image_width = Width/2;
         image_height = bitmap.getHeight()*image_width/bitmap.getWidth();
+    }
+
+    public void setDefaultParams(){
+        offset_x=0;
+        offset_y=0;
+        step_x=1;
+        step_y=1;
+        step_time_ms=11;
+        setDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.animated_bg));
     }
 
     @Override

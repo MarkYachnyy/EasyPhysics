@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.TopicChoiceActivity">
-
+    android:layout_height="match_parent">
+    <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.AnimatedBGView
+        android:id="@+id/activity_topic_choice.bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/light_blue">
+            <Button
+                android:id="@+id/activity_topic_choice.back_button"
+                android:layout_marginLeft="10sp"
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="@color/red"
+                android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"/>
+            <TextView
+                android:padding="5sp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="[grade]"
+                android:textColor="@color/white"
+                android:textSize="@dimen/class_topic_choice_view_text_size"/>
+            <Space
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <ListView
+            android:id="@+id/activity_topic_choice.list"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:dividerHeight="0sp"
+            android:divider="@color/transparent"
+            android:scrollbarSize="0sp"/>
+    </LinearLayout>
 </FrameLayout>

@@ -2,6 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.AnimatedBGView
+        android:id="@+id/activity_topic_choice.bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,6 +17,7 @@
             android:orientation="horizontal"
             android:background="@color/light_blue">
             <Button
+                android:id="@+id/activity_grade_choice.back_button"
                 android:layout_marginLeft="10sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -22,6 +27,7 @@
                 android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"/>
         </LinearLayout>
         <ListView
+            android:id="@+id/activity_grade_choice.list"
             android:layout_width="match_parent"
             android:layout_height="0sp"
             android:layout_weight="11"
