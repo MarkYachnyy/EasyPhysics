@@ -67,12 +67,21 @@ public class AnimatedBGView extends SurfaceView implements SurfaceHolder.Callbac
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
-
+        drawThread = new DrawThread();
     }
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
-
+        /*Height = height;
+        Width = width;
+        if(height!=0 && width!=0){
+            image_width = Width/2;
+            image_height = bitmap.getHeight()*image_width/bitmap.getWidth();
+            drawThread.ready=true;
+        } else {
+            drawThread.request_stop();
+            drawThread.ready = false;
+        }*/
     }
 
     @Override
@@ -92,7 +101,7 @@ public class AnimatedBGView extends SurfaceView implements SurfaceHolder.Callbac
 
     public void activate(){
         if(drawThread!=null){
-            if(drawThread.ready){
+            if(drawThread.ready && !drawThread.running){
                 drawThread.running=true;
                 drawThread.start();
             }else{
@@ -114,7 +123,7 @@ public class AnimatedBGView extends SurfaceView implements SurfaceHolder.Callbac
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
         if(drawThread!=null){
-            drawThread.request_stop();
+            drawThread.interrupt();
         }
     }
     private class DrawThread extends Thread{
