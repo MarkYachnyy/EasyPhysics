@@ -72,16 +72,7 @@ public class AnimatedBGView extends SurfaceView implements SurfaceHolder.Callbac
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
-        /*Height = height;
-        Width = width;
-        if(height!=0 && width!=0){
-            image_width = Width/2;
-            image_height = bitmap.getHeight()*image_width/bitmap.getWidth();
-            drawThread.ready=true;
-        } else {
-            drawThread.request_stop();
-            drawThread.ready = false;
-        }*/
+
     }
 
     @Override
