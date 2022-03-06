@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/class_topic_choice_view_margin">
     <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.GradeTopicBGView
-        android:id="@+id/grade_topic_choice_view.bg"
+        android:id="@+id/grade_topic_list_item.bg"
         android:layout_width="match_parent"
         android:layout_height="100sp" />
     <LinearLayout
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/grade_topic_choice_view.name"
+            android:id="@+id/grade_topic_list_item.name_tv"
             android:layout_width="match_parent"
             android:layout_height="0sp"
             android:layout_weight="1"
@@ -21,7 +21,7 @@
             android:textSize="@dimen/class_topic_choice_view_text_size"
             android:textColor="@color/white"/>
         <TextView
-            android:id="@+id/grade_topic_choice_view.progress"
+            android:id="@+id/grade_topic_list_item.progress_tv"
             android:layout_width="match_parent"
             android:layout_height="0sp"
             android:layout_weight="1"

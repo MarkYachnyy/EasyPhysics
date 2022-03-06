@@ -13,7 +13,7 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent i = new Intent(this,TopicChoiceActivity.class);
+        Intent i = new Intent(this,GradeChoiceActivity.class);
         startActivity(i);
     }
 }

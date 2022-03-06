@@ -23,9 +23,9 @@ public class TopicArrayAdapter extends ArrayAdapter<Topic> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Topic topic = getItem(position);
+        /*Topic topic = getItem(position);
         if(convertView==null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.grade_topic_choice_view,null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.grade_topic_list_item,null);
         }
         ((GradeTopicBGView)convertView.findViewById(R.id.grade_topic_choice_view_bg)).setProgress(topic.getProgress());
         ((TextView)convertView.findViewById(R.id.grade_topic_choice_view_name)).setText(topic.getName());
@@ -38,7 +38,7 @@ public class TopicArrayAdapter extends ArrayAdapter<Topic> {
             progress_TV.setTextColor(v.getResources().getColor(R.color.light_green));
         } else {
             progress_TV.setTextColor(v.getResources().getColor(R.color.white));
-        }
+        }*/
         return convertView;
     }
 }
