@@ -17,4 +17,5 @@
     <color name="red_pastel">#FFFF3333</color>
     <color name="light_green_pastel">#FF66FF66</color>
     <color name="dark_green_pastel">#FF50c878</color>
+    <color name="semitransparent_black">#7F000000</color>
 </resources>

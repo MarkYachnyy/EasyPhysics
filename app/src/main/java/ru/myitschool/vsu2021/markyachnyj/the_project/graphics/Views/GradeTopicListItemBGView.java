@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 
-public class GradeTopicBGView extends View {
+public class GradeTopicListItemBGView extends View {
 
     final private Paint paint;
     final private int r = 50;
@@ -19,7 +19,7 @@ public class GradeTopicBGView extends View {
     private float progress=0f;
     private boolean is_chosen = false;
 
-    public GradeTopicBGView(Context context, @Nullable AttributeSet attrs) {
+    public GradeTopicListItemBGView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
         paint.setAntiAlias(true);

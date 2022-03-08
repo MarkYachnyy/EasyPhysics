@@ -1,8 +1,6 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
-import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.GradeTopicBGView;
+import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.GradeTopicListItemBGView;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
 
 public class GradeAdapter extends BaseAdapter {
@@ -51,7 +49,7 @@ public class GradeAdapter extends BaseAdapter {
             Grade grade = data.get(position);
             if(convertView==null){
                 convertView = inflater.inflate(R.layout.grade_topic_list_item, null);
-                ((GradeTopicBGView)convertView.findViewById(R.id.grade_topic_list_item_bg)).setProgress(grade.getProgress());
+                ((GradeTopicListItemBGView)convertView.findViewById(R.id.grade_topic_list_item_bg)).setProgress(grade.getProgress());
                 ((TextView)convertView.findViewById(R.id.grade_topic_list_item_name_tv)).setText(grade.getNumber()+" Класс");
                 TextView Progress_TV = convertView.findViewById(R.id.grade_topic_list_item_progress_tv);
                 Progress_TV.setText("Пройдено "+grade.getTopic_completed()+" тем из "+grade.getTopic_count());

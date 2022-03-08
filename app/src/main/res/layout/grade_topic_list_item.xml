@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/class_topic_choice_view_margin">
-    <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.GradeTopicBGView
+    <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.GradeTopicListItemBGView
         android:id="@+id/grade_topic_list_item.bg"
         android:layout_width="match_parent"
         android:layout_height="100sp" />

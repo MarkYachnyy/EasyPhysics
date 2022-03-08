@@ -35,4 +35,26 @@
             android:divider="@color/transparent"
             android:scrollbarSize="0sp"/>
     </LinearLayout>
+    <FrameLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/activity_grade_choice.fading_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background = "@color/semitransparent_black"
+        android:visibility="gone"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"/>
+        <FrameLayout
+            android:id="@+id/activity_grade_choice.garde_info_fragment_holder"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="3"/>
+    </LinearLayout>
 </FrameLayout>

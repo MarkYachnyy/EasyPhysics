@@ -12,9 +12,9 @@ public class GithubResources {
         return result;
     }
     public static ArrayList<Topic> getTopicArrayList(int grade_number){
-        return getTestTopicArrayList();
+        return getTestTopicArrayList7();
     }
-    private static ArrayList<Topic> getTestTopicArrayList(){
+    private static ArrayList<Topic> getTestTopicArrayList7(){
         ArrayList<Topic> result = new ArrayList<>();
         for(String string:new String[]{"Масса, объём, плотность","Механическое движение", "Поняти силы","Давление","Сила Архимеда","Работа, мощность, КПД","Правило моментов, рычаги силы"}){
             result.add(new Topic(string, 6,3));
