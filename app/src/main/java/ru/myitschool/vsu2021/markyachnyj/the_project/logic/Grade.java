@@ -12,7 +12,7 @@ public class Grade {
     }
 
     public float getProgress(){
-        return 1f*topic_count/topic_completed;
+        return 1f*topic_completed/topic_count;
     }
 
     public int getNumber() {

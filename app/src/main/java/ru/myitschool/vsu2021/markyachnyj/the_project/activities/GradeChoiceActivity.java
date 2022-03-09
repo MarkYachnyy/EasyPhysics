@@ -7,18 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-
-import org.json.JSONObject;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.GradeProgressInfoFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters.GradeAdapter;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
-import ru.myitschool.vsu2021.markyachnyj.the_project.resources.GithubResources;
+import ru.myitschool.vsu2021.markyachnyj.the_project.GitHub.GithubResources;
 
 public class GradeChoiceActivity extends AppCompatActivity {
 
@@ -54,7 +51,7 @@ public class GradeChoiceActivity extends AppCompatActivity {
         Animation frame_animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
         frame.startAnimation(frame_animation);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        GradeProgressInfoFragment fragment = new GradeProgressInfoFragment();
+        GradeProgressInfoFragment fragment = new GradeProgressInfoFragment(grade);
         transaction.setCustomAnimations(R.anim.fragment_grade_topic_progress_info_enter,R.anim.fragment_grade_topic_progress_info_exit);
         transaction.add(R.id.activity_grade_choice_garde_info_fragment_holder,fragment);
         transaction.commit();

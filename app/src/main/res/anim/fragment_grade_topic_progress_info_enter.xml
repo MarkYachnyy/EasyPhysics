@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translate xmlns:android="http://schemas.android.com/apk/res/android"
     android:fillAfter = "true"
-    android:duration = "500"
+    android:duration = "@integer/fragment_grade_topic_progress_open_close_time"
     android:fromYDelta="3000"
     android:toYDelta="0"
     android:interpolator = "@android:anim/decelerate_interpolator">

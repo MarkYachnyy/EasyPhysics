@@ -2,28 +2,19 @@ package ru.myitschool.vsu2021.markyachnyj.the_project.logic;
 
 public class Topic {
     private String name;
-    private int test_count;
-    private int test_passed;
+    private float test_progress;
 
-    public Topic(String name, int test_count, int test_passed) {
+    public Topic(String name, float test_progress) {
+        this.test_progress = test_progress;
         this.name = name;
-        this.test_count = test_count;
-        this.test_passed = test_passed;
     }
 
     public float getProgress(){
-        return 1f*test_passed/test_count;
+        return test_progress;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getTest_count() {
-        return test_count;
-    }
-
-    public int getTest_passed() {
-        return test_passed;
-    }
 }

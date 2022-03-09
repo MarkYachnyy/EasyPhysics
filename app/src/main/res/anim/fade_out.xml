@@ -3,5 +3,5 @@
     android:fillAfter = "true"
     android:fromAlpha="1"
     android:toAlpha="0"
-    android:duration = "500">
+    android:duration = "@integer/fragment_grade_topic_progress_open_close_time">
 </alpha>

@@ -13,13 +13,13 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.GradeTopicListItemBGView;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
 
-public class TopicArrayAdapter extends BaseAdapter {
+public class TopicAdapter extends BaseAdapter {
 
     private ArrayList<Topic> data;
     private LayoutInflater inflater;
     private View view;
 
-    public TopicArrayAdapter(Context context, ArrayList<Topic> data){
+    public TopicAdapter(Context context, ArrayList<Topic> data){
         inflater = LayoutInflater.from(context);
         this.data = data;
         view = new View(context);
@@ -51,15 +51,21 @@ public class TopicArrayAdapter extends BaseAdapter {
             ((GradeTopicListItemBGView)convertView.findViewById(R.id.grade_topic_list_item_bg)).setProgress(topic.getProgress());
             ((TextView)convertView.findViewById(R.id.grade_topic_list_item_name_tv)).setText(topic.getName());
             TextView Progress_TV = convertView.findViewById(R.id.grade_topic_list_item_progress_tv);
-            Progress_TV.setText("Пройдено "+topic.getTest_passed()+" тем из "+topic.getTest_count());
-            if(topic.getTest_passed()==0){
+            Progress_TV.setTextSize(22);
+            Progress_TV.setText("Лучший прогресс по тесту: "+(int)(topic.getProgress()*100)+" %");
+            if(topic.getProgress()==0){
                 Progress_TV.setTextColor(view.getResources().getColor(R.color.light_gray));
-            } else if(topic.getTest_passed()==topic.getTest_count()){
+            } else if(topic.getProgress()==1){
                 Progress_TV.setTextColor(view.getResources().getColor(R.color.light_green));
             } else {
                 Progress_TV.setTextColor(view.getResources().getColor(R.color.white));
             }
         }
         return convertView;
+    }
+
+    public void setNewData(ArrayList<Topic> data) {
+        this.data = data;
+        notifyDataSetChanged();
     }
 }

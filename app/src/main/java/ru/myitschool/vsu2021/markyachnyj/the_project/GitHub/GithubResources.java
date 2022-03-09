@@ -1,6 +1,7 @@
-package ru.myitschool.vsu2021.markyachnyj.the_project.resources;
+package ru.myitschool.vsu2021.markyachnyj.the_project.GitHub;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
@@ -16,8 +17,9 @@ public class GithubResources {
     }
     private static ArrayList<Topic> getTestTopicArrayList7(){
         ArrayList<Topic> result = new ArrayList<>();
+        Random random = new Random();
         for(String string:new String[]{"Масса, объём, плотность","Механическое движение", "Поняти силы","Давление","Сила Архимеда","Работа, мощность, КПД","Правило моментов, рычаги силы"}){
-            result.add(new Topic(string, 6,3));
+            result.add(new Topic(string, (random.nextInt(101))/100f));
         };
         return result;
     }
