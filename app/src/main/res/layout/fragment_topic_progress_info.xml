@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.GradeProgressInfoFragment">
+    <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.GradeTopicProgressInfoFragmentBGView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="15"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="0sp"/>
+            <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.RoundProgressBar
+                android:id="@+id/fragment_topic_progress_info.progress_bar"
+                android:layout_width="0sp"
+                android:layout_weight="15"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="0sp"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="2"
+            android:background="@color/dark_blue_pastel">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0sp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+                <Button
+                    android:id="@+id/fragment_topic_progress_info.read_conspect_btn"
+                    android:layout_width="0sp"
+                    android:layout_weight="7"
+                    android:layout_height="match_parent"
+                    android:text="Прочитать конспект"
+                    android:textSize="@dimen/fragment_topic_progress_info_btn_text_size"
+                    android:backgroundTint="@color/light_green"/>
+                <View
+                    android:layout_width="0sp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+                <Button
+                    android:id="@+id/fragment_topic_progress_info.start_test_btn"
+                    android:layout_width="0sp"
+                    android:layout_weight="7"
+                    android:layout_height="match_parent"
+                    android:text="Приступить к тесту"
+                    android:textSize="@dimen/fragment_topic_progress_info_btn_text_size"
+                    android:backgroundTint="@color/light_green"/>
+                <View
+                    android:layout_width="0sp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="0sp"/>
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_weight="15"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/fragment_topic_progress_info.close_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="▼▼▼"
+                android:backgroundTint="@color/dark_blue_pastel"/>
+            <TextView
+                android:id="@+id/fragment_topic_progress_info.name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fragment_grade_progress_info_text_size"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="[topic]"/>
+            <TextView
+                android:id="@+id/fragment_topic_progress_info.progress_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="@dimen/fragment_grade_progress_info_text_size"
+                android:text="[test_progress]"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="0sp"/>
+    </LinearLayout>
+
+</FrameLayout>

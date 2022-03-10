@@ -62,7 +62,7 @@ public class AnimatedBGView extends SurfaceView implements SurfaceHolder.Callbac
         step_x=1;
         step_y=1;
         step_time_ms=11;
-        setDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.animated_bg));
+        setDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.main_bg_image));
     }
 
     @Override

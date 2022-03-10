@@ -40,7 +40,7 @@ public class StaticBGView extends View {
     }
 
     private void setDefaultParams(){
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.animated_bg);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.main_bg_image);
         src_rect = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
     }
 
