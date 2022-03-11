@@ -17,7 +17,6 @@ public class GradeTopicListItemBGView extends View {
     final private int r = 50;
     final private int border = 10;
     private float progress=0f;
-    private boolean is_chosen = false;
 
     public GradeTopicListItemBGView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -27,11 +26,7 @@ public class GradeTopicListItemBGView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if(is_chosen){
-            paint.setColor(getResources().getColor(R.color.white));
-        } else {
-            paint.setColor(getResources().getColor(R.color.dark_blue_pastel));
-        }
+        paint.setColor(getResources().getColor(R.color.dark_blue_pastel));
         canvas.drawRoundRect(0,0,getWidth(),getHeight(),r,r,paint);
         paint.setColor(getResources().getColor(R.color.light_blue));
         canvas.drawRoundRect(border,border,getWidth()-border,getHeight()-border,r,r,paint);
@@ -46,9 +41,5 @@ public class GradeTopicListItemBGView extends View {
         invalidate();
     }
 
-    public void setChosen(boolean new_chosen){
-        is_chosen = new_chosen;
-        invalidate();
-    }
 }
 

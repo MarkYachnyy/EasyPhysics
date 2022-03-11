@@ -26,9 +26,9 @@ public class GradeProgressInfoFragment extends Fragment {
 
     private Grade grade;
 
-    public GradeProgressInfoFragment(Grade grade){
+    public GradeProgressInfoFragment(Grade g){
         super();
-        this.grade = grade;
+        this.grade = g;
     }
 
     @Override
@@ -58,6 +58,7 @@ public class GradeProgressInfoFragment extends Fragment {
             Intent i = new Intent(getActivity(), TopicChoiceActivity.class);
             i.putExtra("grade_number",grade.getNumber());
             startActivity(i);
+            CloseFragment();
         }
     };
 

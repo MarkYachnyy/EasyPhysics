@@ -53,7 +53,7 @@ public class GradeChoiceActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         GradeProgressInfoFragment fragment = new GradeProgressInfoFragment(grade);
         transaction.setCustomAnimations(R.anim.fragment_grade_topic_progress_info_enter,R.anim.fragment_grade_topic_progress_info_exit);
-        transaction.add(R.id.activity_grade_choice_garde_info_fragment_holder,fragment);
+        transaction.add(R.id.activity_grade_choice_grade_info_fragment_holder,fragment);
         transaction.commit();
     }
 

@@ -1,16 +1,24 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
+import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.GradeProgressInfoFragment;
+import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.TopicProgressInfoFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters.TopicAdapter;
+import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
 import ru.myitschool.vsu2021.markyachnyj.the_project.GitHub.GithubResources;
 
@@ -28,6 +36,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
         data = GithubResources.getTopicArrayList(getIntent().getIntExtra("grade_number",7));
         adapter = new TopicAdapter(getApplicationContext(),data);
         list.setAdapter(adapter);
+        list.setOnItemClickListener(ItemListener);
         ((Button)findViewById(R.id.activity_topic_choice_back_button)).setOnClickListener(Back_Btn_Listener);
     }
 
@@ -45,4 +54,24 @@ public class TopicChoiceActivity extends AppCompatActivity {
             finish();
         }
     };
+
+    private AdapterView.OnItemClickListener ItemListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            OpenFragment((Topic) adapter.getItem(position));
+        }
+    };
+
+    private void OpenFragment(Topic topic){
+        FrameLayout frame = findViewById(R.id.activity_topic_choice_fading_frame);
+        frame.setVisibility(View.VISIBLE);
+        frame.setClickable(true);
+        Animation frame_animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+        frame.startAnimation(frame_animation);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        TopicProgressInfoFragment fragment = new TopicProgressInfoFragment(topic);
+        transaction.setCustomAnimations(R.anim.fragment_grade_topic_progress_info_enter,R.anim.fragment_grade_topic_progress_info_exit);
+        transaction.add(R.id.activity_topic_choice_topic_info_fragment_holder,fragment);
+        transaction.commit();
+    }
 }
