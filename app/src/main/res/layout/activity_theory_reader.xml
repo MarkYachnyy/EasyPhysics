@@ -42,7 +42,7 @@
                     android:padding="10sp"
                     android:textColor="@color/white"
                     android:background="@color/light_blue"
-                    android:text="[theory]"/>
+                    android:text="[theory]" />
                 <Button
                     android:layout_marginLeft="@dimen/activity_theory_reader_test_btn_margin_sides"
                     android:layout_marginRight="@dimen/activity_theory_reader_test_btn_margin_sides"
@@ -51,7 +51,6 @@
                     android:backgroundTint="@color/light_green"
                     android:text="Приступить к тесту"/>
             </LinearLayout>
-
         </ScrollView>
 
     </LinearLayout>

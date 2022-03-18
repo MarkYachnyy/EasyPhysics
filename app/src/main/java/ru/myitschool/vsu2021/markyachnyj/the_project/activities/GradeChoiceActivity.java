@@ -19,13 +19,14 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.GitHub.GithubResources;
 
 public class GradeChoiceActivity extends AppCompatActivity {
 
+    ListView listView;
     GradeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_choice);
-        ListView listView = (ListView) findViewById(R.id.activity_grade_choice_list);
+        listView = (ListView) findViewById(R.id.activity_grade_choice_list);
         adapter = new GradeAdapter(getApplicationContext(), GithubResources.getGradeArrayList());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(ItemListener);

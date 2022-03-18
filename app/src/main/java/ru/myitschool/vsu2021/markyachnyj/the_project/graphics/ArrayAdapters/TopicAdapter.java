@@ -47,7 +47,7 @@ public class TopicAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Topic topic = data.get(position);
         if(convertView==null){
-            convertView = inflater.inflate(R.layout.grade_topic_list_item,null);
+            convertView = inflater.inflate(R.layout.list_item_grade_topic,null);
             ((GradeTopicListItemBGView)convertView.findViewById(R.id.grade_topic_list_item_bg)).setProgress(topic.getProgress());
             ((TextView)convertView.findViewById(R.id.grade_topic_list_item_name_tv)).setText(topic.getName());
             TextView Progress_TV = convertView.findViewById(R.id.grade_topic_list_item_progress_tv);

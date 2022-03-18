@@ -48,7 +48,7 @@ public class GradeAdapter extends BaseAdapter {
         if(!data.isEmpty()){
             Grade grade = data.get(position);
             if(convertView==null){
-                convertView = inflater.inflate(R.layout.grade_topic_list_item, null);
+                convertView = inflater.inflate(R.layout.list_item_grade_topic, null);
                 ((GradeTopicListItemBGView)convertView.findViewById(R.id.grade_topic_list_item_bg)).setProgress(grade.getProgress());
                 ((TextView)convertView.findViewById(R.id.grade_topic_list_item_name_tv)).setText(grade.getNumber()+" Класс");
                 TextView Progress_TV = convertView.findViewById(R.id.grade_topic_list_item_progress_tv);

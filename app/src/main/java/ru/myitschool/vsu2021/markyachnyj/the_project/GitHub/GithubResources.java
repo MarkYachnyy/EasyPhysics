@@ -15,6 +15,9 @@ public class GithubResources {
     public static ArrayList<Topic> getTopicArrayList(int grade_number){
         return getTestTopicArrayList7();
     }
+    public static String getTheory(String topic){
+        return "Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n";
+    }
     private static ArrayList<Topic> getTestTopicArrayList7(){
         ArrayList<Topic> result = new ArrayList<>();
         Random random = new Random();
