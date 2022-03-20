@@ -33,7 +33,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_choice);
-        Back_Button = findViewById(R.id.activity_topic_choice_back_button);
+        Back_Button = findViewById(R.id.activity_topic_choice_back_btn);
         list = (ListView) findViewById(R.id.activity_topic_choice_list);
         data = GithubResources.getTopicArrayList(getIntent().getIntExtra("grade_number",7));
         adapter = new TopicAdapter(getApplicationContext(),data);

@@ -20,6 +20,7 @@
             android:layout_weight="1"
             android:background="@color/light_blue">
             <Button
+                android:id="@+id/activity_theory_reader.back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -36,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/activity_theory_reader.theory_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
@@ -44,6 +46,7 @@
                     android:background="@color/light_blue"
                     android:text="[theory]" />
                 <Button
+                    android:id="@+id/activity_theory_reader.continue_btn"
                     android:layout_marginLeft="@dimen/activity_theory_reader_test_btn_margin_sides"
                     android:layout_marginRight="@dimen/activity_theory_reader_test_btn_margin_sides"
                     android:layout_width="match_parent"

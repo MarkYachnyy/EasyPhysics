@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.The_Project">
         <activity
+            android:name=".activities.TestActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.TheoryReaderActivity"
             android:exported="false" />
         <activity

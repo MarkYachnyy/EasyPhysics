@@ -46,7 +46,7 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent"/>
                 <Button
-                    android:id="@+id/fragment_topic_progress_info.read_conspect_btn"
+                    android:id="@+id/fragment_topic_progress_info.read_theory_btn"
                     android:layout_width="0sp"
                     android:layout_weight="7"
                     android:layout_height="match_parent"

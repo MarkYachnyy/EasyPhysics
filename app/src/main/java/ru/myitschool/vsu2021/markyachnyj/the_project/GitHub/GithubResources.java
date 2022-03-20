@@ -16,7 +16,7 @@ public class GithubResources {
         return getTestTopicArrayList7();
     }
     public static String getTheory(String topic){
-        return "Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n Ура Ура Ура Ура Ура Ура Ура\n";
+        return "Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура Ура";
     }
     private static ArrayList<Topic> getTestTopicArrayList7(){
         ArrayList<Topic> result = new ArrayList<>();

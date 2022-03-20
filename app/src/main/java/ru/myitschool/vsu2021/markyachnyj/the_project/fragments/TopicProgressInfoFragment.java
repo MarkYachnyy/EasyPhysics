@@ -3,6 +3,7 @@ package ru.myitschool.vsu2021.markyachnyj.the_project.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,6 +26,8 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
 public class TopicProgressInfoFragment extends Fragment {
 
     private Topic topic;
+    private Button Close_Btn;
+    private Button Read_theory_Btn;
 
     public TopicProgressInfoFragment(Topic t){
         super();
@@ -35,8 +38,10 @@ public class TopicProgressInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_topic_progress_info, container, false);
-        Button Close_Btn = (Button)view.findViewById(R.id.fragment_topic_progress_info_close_btn);
+        Close_Btn = (Button)view.findViewById(R.id.fragment_topic_progress_info_close_btn);
+        Read_theory_Btn = (Button) view.findViewById(R.id.fragment_topic_progress_info_read_theory_btn);
         Close_Btn.setOnClickListener(Close_Btn_Listener);
+        Read_theory_Btn.setOnClickListener(Read_Theory_Btn_Listener);
         ((TextView)view.findViewById(R.id.fragment_topic_progress_info_name_tv)).setText(topic.getName());
         ((TextView)view.findViewById(R.id.fragment_topic_progress_info_progress_tv)).setText("Лучший прогресс по тесту: "+(int)(100*topic.getProgress())+"%");
         ((RoundProgressBar)view.findViewById(R.id.fragment_topic_progress_info_progress_bar)).setProgress(topic.getProgress());

@@ -16,7 +16,7 @@
             android:orientation="horizontal"
             android:background="@color/light_blue">
             <Button
-                android:id="@+id/activity_topic_choice.back_button"
+                android:id="@+id/activity_topic_choice.back_btn"
                 android:layout_marginLeft="10sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
