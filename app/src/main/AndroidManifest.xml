@@ -10,18 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.The_Project">
         <activity
-            android:name=".activities.TestActivity"
+            android:screenOrientation="portrait"
+            android:name=".activities.TestSolverActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activities.TheoryReaderActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activities.TopicChoiceActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activities.GradeChoiceActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activities.MainMenuActivity"
             android:exported="true">
             <intent-filter>

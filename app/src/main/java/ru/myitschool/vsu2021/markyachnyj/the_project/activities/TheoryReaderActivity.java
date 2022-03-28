@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import ru.myitschool.vsu2021.markyachnyj.the_project.GitHub.GithubResources;
+import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResources;
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
-import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
 
 public class TheoryReaderActivity extends AppCompatActivity {
 
@@ -42,7 +41,7 @@ public class TheoryReaderActivity extends AppCompatActivity {
     private View.OnClickListener Continue_Btn_Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent i = new Intent(TheoryReaderActivity.this,TestActivity.class);
+            Intent i = new Intent(TheoryReaderActivity.this, TestSolverActivity.class);
             i.putExtra("topic_name",topic_name);
             startActivity(i);
         }

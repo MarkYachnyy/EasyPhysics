@@ -15,12 +15,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
-import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.GradeProgressInfoFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.TopicProgressInfoFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters.TopicAdapter;
-import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
-import ru.myitschool.vsu2021.markyachnyj.the_project.GitHub.GithubResources;
+import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResources;
 
 public class TopicChoiceActivity extends AppCompatActivity {
 

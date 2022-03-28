@@ -47,8 +47,8 @@
                     android:text="[theory]" />
                 <Button
                     android:id="@+id/activity_theory_reader.continue_btn"
-                    android:layout_marginLeft="@dimen/activity_theory_reader_test_btn_margin_sides"
-                    android:layout_marginRight="@dimen/activity_theory_reader_test_btn_margin_sides"
+                    android:layout_marginLeft="@dimen/activity_theory_reader.test_btn_margin_sides"
+                    android:layout_marginRight="@dimen/activity_theory_reader.test_btn_margin_sides"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/light_green"

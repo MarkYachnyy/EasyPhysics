@@ -1,4 +1,4 @@
-package ru.myitschool.vsu2021.markyachnyj.the_project.GitHub;
+package ru.myitschool.vsu2021.markyachnyj.the_project.theory;
 
 import java.util.ArrayList;
 import java.util.Random;

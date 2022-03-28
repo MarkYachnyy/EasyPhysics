@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
+import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TestSolverActivity;
 import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TheoryReaderActivity;
 import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TopicChoiceActivity;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.RoundProgressBar;
@@ -28,6 +29,7 @@ public class TopicProgressInfoFragment extends Fragment {
     private Topic topic;
     private Button Close_Btn;
     private Button Read_theory_Btn;
+    private Button Start_Test_Btn;
 
     public TopicProgressInfoFragment(Topic t){
         super();
@@ -40,8 +42,10 @@ public class TopicProgressInfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_topic_progress_info, container, false);
         Close_Btn = (Button)view.findViewById(R.id.fragment_topic_progress_info_close_btn);
         Read_theory_Btn = (Button) view.findViewById(R.id.fragment_topic_progress_info_read_theory_btn);
+        Start_Test_Btn = (Button) view.findViewById(R.id.fragment_topic_progress_info_start_test_btn);
         Close_Btn.setOnClickListener(Close_Btn_Listener);
         Read_theory_Btn.setOnClickListener(Read_Theory_Btn_Listener);
+        Start_Test_Btn.setOnClickListener(Start_Test_Btn_Listener);
         ((TextView)view.findViewById(R.id.fragment_topic_progress_info_name_tv)).setText(topic.getName());
         ((TextView)view.findViewById(R.id.fragment_topic_progress_info_progress_tv)).setText("Лучший прогресс по тесту: "+(int)(100*topic.getProgress())+"%");
         ((RoundProgressBar)view.findViewById(R.id.fragment_topic_progress_info_progress_bar)).setProgress(topic.getProgress());
@@ -67,6 +71,14 @@ public class TopicProgressInfoFragment extends Fragment {
             String topic_name = topic.getName();
             Intent i = new Intent(getActivity(), TheoryReaderActivity.class);
             i.putExtra("topic_name",topic_name);
+            startActivity(i);
+        }
+    };
+
+    private View.OnClickListener Start_Test_Btn_Listener =new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(getActivity(), TestSolverActivity.class);
             startActivity(i);
         }
     };
