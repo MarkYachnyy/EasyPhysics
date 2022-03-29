@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:backgroundTint="@color/red"
-                android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"/>
+                android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_30"/>
         </LinearLayout>
         <ListView
             android:id="@+id/activity_topic_choice.list"

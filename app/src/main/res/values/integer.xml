@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="fragment_grade_topic_progress_open_close_time">500</integer>
+    <integer name="fragment_task_enter_exit_time">250</integer>
 </resources>

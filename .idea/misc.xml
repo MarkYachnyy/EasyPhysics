@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.49166666666666664" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.49907407407407406" />
+        <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/drawable/ic_baseline_check_30.xml" value="0.49166666666666664" />
+        <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/drawable/ic_baseline_check_40.xml" value="0.49166666666666664" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.5441025641025641" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout-sw600dp/activity_grade_choice.xml" value="0.415625" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/activity_grade_choice.xml" value="0.5" />

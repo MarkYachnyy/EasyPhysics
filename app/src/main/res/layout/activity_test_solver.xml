@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <FrameLayout
-            android:id="@+id/activity_test_solver.task_fragment_holder"
+            android:id="@+id/activity_test_solver.task_fragment_holder_fl"
             android:layout_margin="5sp"
             android:layout_width="match_parent"
             android:layout_height="0sp"
@@ -24,31 +24,32 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             android:background = "@color/light_blue">
-            <Button
-                android:layout_marginLeft="@dimen/activity_test_solver.next_previous_task_btn_margin_sides"
-                android:layout_marginRight="@dimen/activity_test_solver.next_previous_task_btn_margin_sides"
+            <ImageButton
+                android:id="@+id/activity_test_solver.previous_task_btn"
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_blue"/>
+                android:backgroundTint="@color/dark_blue"
+                android:src="@drawable/ic_baseline_keyboard_arrow_left_30"/>
             <HorizontalScrollView
                 android:scrollbarSize="0sp"
                 android:layout_width="0sp"
                 android:layout_weight="5"
                 android:layout_height="match_parent">
                 <LinearLayout
+                    android:id="@+id/activity_test_solver.task_buttons_ll"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
                 </LinearLayout>
             </HorizontalScrollView>
-            <Button
-                android:layout_marginLeft="@dimen/activity_test_solver.next_previous_task_btn_margin_sides"
-                android:layout_marginRight="@dimen/activity_test_solver.next_previous_task_btn_margin_sides"
+            <ImageButton
+                android:id="@+id/activity_test_solver.next_task_btn"
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/dark_blue"/>
+                android:backgroundTint="@color/dark_blue"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_30"/>
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
