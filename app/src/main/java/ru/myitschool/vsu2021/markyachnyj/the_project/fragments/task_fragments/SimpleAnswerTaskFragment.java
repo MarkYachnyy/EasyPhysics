@@ -19,7 +19,7 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.SimpleAnswerTas
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.Task;
 
 
-public class SimpleAnswerTaskFragment extends TaskFragment {
+public class SimpleAnswerTaskFragment extends TaskFragment{
 
     private SimpleAnswerTask task;
     private TextView Exercise_TV;

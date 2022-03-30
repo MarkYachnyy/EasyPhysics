@@ -79,6 +79,7 @@ public class TopicProgressInfoFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(getActivity(), TestSolverActivity.class);
+            i.putExtra("topic_name",topic.getName());
             startActivity(i);
         }
     };

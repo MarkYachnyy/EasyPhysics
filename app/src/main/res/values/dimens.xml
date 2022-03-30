@@ -6,4 +6,7 @@
     <dimen name="fragment_topic_progress_info_btn_text_size">16sp</dimen>
     <dimen name="activity_theory_reader.test_btn_margin_sides">10sp</dimen>
     <dimen name="activity_test_solver.next_previous_task_btn_margin_sides">5sp</dimen>
+    <dimen name="activity_test_solver.task_buttons_text_size_small">10sp</dimen>
+    <dimen name="activity_test_solver.task_buttons_text_size_large">15sp</dimen>
+    <dimen name="alert_dialog_finish_test_buttons_margin_sides">2sp</dimen>
 </resources>

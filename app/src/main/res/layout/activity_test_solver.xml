@@ -12,6 +12,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal"
+            android:background="@color/light_blue">
+            <ImageButton
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_baseline_keyboard_arrow_left_30"
+                android:backgroundTint="@color/red"/>
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="4"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:text="Тест по теме:"/>
+            <ImageButton
+                android:id="@+id/activity_test_solver.finish_test_btn"
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/light_green_pastel"
+                android:src="@drawable/ic_baseline_check_30"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/activity_test_solver.topic_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="0.7"
+            android:background="@color/light_blue"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:text="[topic_name]"/>
         <FrameLayout
             android:id="@+id/activity_test_solver.task_fragment_holder_fl"
             android:layout_margin="5sp"
