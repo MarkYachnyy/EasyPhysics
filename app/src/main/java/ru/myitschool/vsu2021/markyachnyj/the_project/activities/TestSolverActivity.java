@@ -39,6 +39,7 @@ public class TestSolverActivity extends AppCompatActivity {
     private HashMap<Button, TaskFragment> fragment_map;
     private ArrayList<Button> task_buttons;
     private int current_task_id=0;
+    private String topic_name;
 
     private LinearLayout Task_Buttons_LL;
     private TextView Topic_Name_TV;
@@ -65,7 +66,7 @@ public class TestSolverActivity extends AppCompatActivity {
         for(int i=0;i<6;i++){
             tasks.add(new SimpleAnswerTask("Exercise"+String.valueOf(i+1),"???"));
         }
-        String topic_name = getIntent().getStringExtra("topic_name");
+        topic_name = getIntent().getStringExtra("topic_name");
         Topic_Name_TV.setText(topic_name);
         test = new Test(topic_name,tasks);
         /*TEST*/
@@ -203,6 +204,7 @@ public class TestSolverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),TestResultActivity.class);
+                i.putExtra("topic_name",topic_name);
                 startActivity(i);
             }
         });

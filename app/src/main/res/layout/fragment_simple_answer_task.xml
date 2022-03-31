@@ -30,7 +30,8 @@
             android:hint="ответ"
             android:textSize="30sp"
             android:textColor="@color/white"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:imeOptions="actionDone"/>
         <ImageButton
             android:id="@+id/fragment_simple_answer_task.save_answer_btn"
             android:layout_width="0sp"

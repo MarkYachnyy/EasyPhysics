@@ -51,7 +51,7 @@
                     android:layout_weight="7"
                     android:layout_height="match_parent"
                     android:text="Прочитать конспект"
-                    android:textSize="@dimen/fragment_topic_progress_info_btn_text_size"
+                    android:textSize="@dimen/fragment_topic_progress.info_btn_text_size"
                     android:backgroundTint="@color/light_green"/>
                 <View
                     android:layout_width="0sp"
@@ -63,7 +63,7 @@
                     android:layout_weight="7"
                     android:layout_height="match_parent"
                     android:text="Приступить к тесту"
-                    android:textSize="@dimen/fragment_topic_progress_info_btn_text_size"
+                    android:textSize="@dimen/fragment_topic_progress.info_btn_text_size"
                     android:backgroundTint="@color/light_green"/>
                 <View
                     android:layout_width="0sp"
@@ -97,7 +97,7 @@
                 android:id="@+id/fragment_topic_progress_info.name_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/fragment_grade_progress_info_text_size"
+                android:textSize="@dimen/fragment_grade_progress.info_text_size"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:text="[topic]"/>
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:textSize="@dimen/fragment_grade_progress_info_text_size"
+                android:textSize="@dimen/fragment_grade_progress.info_text_size"
                 android:text="[test_progress]"/>
         </LinearLayout>
 

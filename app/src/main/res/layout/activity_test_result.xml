@@ -1,9 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.TestResultActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.StaticBGView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/activity_test_result.title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:background="@color/light_blue"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="8">
+            <ListView
+                android:divider="@color/transparent"
+                android:scrollbarSize="0sp"
+                android:id="@+id/activity_test_result.list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.RoundProgressBar
+                android:id="@+id/activity_test_result.progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/activity_test_result.progress_bar_margin_sides"
+                android:layout_marginRight="@dimen/activity_test_result.progress_bar_margin_sides"/>
+        </FrameLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:background="@color/light_blue"/>
+    </LinearLayout>
+
+</FrameLayout>

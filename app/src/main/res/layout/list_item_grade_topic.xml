@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/class_topic_choice_view_margin">
+    android:padding="@dimen/class_topic_choice_view.margin">
     <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.GradeTopicListItemBGView
         android:id="@+id/grade_topic_list_item.bg"
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_weight="1"
             android:text="[name]"
             android:gravity="center"
-            android:textSize="@dimen/class_topic_choice_view_text_size"
+            android:textSize="@dimen/class_topic_choice_view.text_size"
             android:textColor="@color/white"/>
         <TextView
             android:id="@+id/grade_topic_list_item.progress_tv"
@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:text="[progress]"
             android:gravity="center"
-            android:textSize="@dimen/class_topic_choice_view_text_size"
+            android:textSize="@dimen/class_topic_choice_view.text_size"
             android:textColor="@color/white"/>
     </LinearLayout>
 </FrameLayout>
