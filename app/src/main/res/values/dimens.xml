@@ -2,12 +2,13 @@
 <resources>
     <dimen name="class_topic_choice_view.text_size">30sp</dimen>
     <dimen name="class_topic_choice_view.margin">5sp</dimen>
-    <dimen name="fragment_grade_progress.info_text_size">30sp</dimen>
-    <dimen name="fragment_topic_progress.info_btn_text_size">16sp</dimen>
+    <dimen name="fragment_grade_progress_info.text_size">30sp</dimen>
+    <dimen name="fragment_topic_progress_info.btn_text_size">16sp</dimen>
     <dimen name="activity_theory_reader.test_btn_margin_sides">10sp</dimen>
     <dimen name="activity_test_solver.next_previous_task_btn_margin_sides">5sp</dimen>
     <dimen name="activity_test_solver.task_buttons_text_size_small">10sp</dimen>
     <dimen name="activity_test_solver.task_buttons_text_size_large">15sp</dimen>
     <dimen name="alert_dialog_finish_test_buttons_margin_sides">2sp</dimen>
     <dimen name="activity_test_result.progress_bar_margin_sides">60sp</dimen>
+    <dimen name="list_item_task_result.text_size_small">25sp</dimen>
 </resources>

@@ -204,7 +204,7 @@ public class TestSolverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),TestResultActivity.class);
-                i.putExtra("topic_name",topic_name);
+                i.putExtra("test",test);
                 startActivity(i);
             }
         });

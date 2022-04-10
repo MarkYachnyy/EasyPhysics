@@ -56,7 +56,7 @@ public class TopicAdapter extends BaseAdapter {
             if(topic.getProgress()==0){
                 Progress_TV.setTextColor(view.getResources().getColor(R.color.light_gray));
             } else if(topic.getProgress()==1){
-                Progress_TV.setTextColor(view.getResources().getColor(R.color.light_green));
+                Progress_TV.setTextColor(view.getResources().getColor(R.color.light_green_pastel));
             } else {
                 Progress_TV.setTextColor(view.getResources().getColor(R.color.white));
             }

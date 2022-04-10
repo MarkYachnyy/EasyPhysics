@@ -15,9 +15,12 @@ public class TheoryReaderActivity extends AppCompatActivity {
 
     private String topic_name;
     private String THEORY;
+
     private TextView Theory_TV;
     private Button Back_Btn;
     private Button Continue_Btn;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

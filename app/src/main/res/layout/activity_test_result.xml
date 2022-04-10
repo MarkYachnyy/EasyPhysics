@@ -14,15 +14,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/activity_test_result.title_tv"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0sp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:background="@color/light_blue"/>
+            android:background="@color/light_blue">
+            <Button
+                android:id="@+id/activity_test_result.close_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_30"
+                android:backgroundTint="@color/light_green"
+                android:textSize="20sp"
+                android:text="завершить"/>
+        </FrameLayout>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0sp"
@@ -33,18 +39,36 @@
                 android:id="@+id/activity_test_result.list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-            <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.RoundProgressBar
-                android:id="@+id/activity_test_result.progress_bar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/activity_test_result.progress_bar_margin_sides"
-                android:layout_marginRight="@dimen/activity_test_result.progress_bar_margin_sides"/>
         </FrameLayout>
-        <View
+        <TextView
+            android:id="@+id/activity_test_result.title_tv"
             android:layout_width="match_parent"
             android:layout_height="0sp"
             android:layout_weight="1"
-            android:background="@color/light_blue"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:background="@color/light_blue"
+            android:text="Тест по теме [topic_name] завершён"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1">
+            <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.BasicProgressBarView
+                android:id="@+id/activity_test_result.progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/activity_test_result.progress_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:text="Прогресс: N%"/>
+        </FrameLayout>
+
     </LinearLayout>
 
 </FrameLayout>

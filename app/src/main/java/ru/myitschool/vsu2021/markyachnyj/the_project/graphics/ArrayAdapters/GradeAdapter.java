@@ -56,7 +56,7 @@ public class GradeAdapter extends BaseAdapter {
                 if(grade.getTopic_completed()==0){
                     Progress_TV.setTextColor(view.getResources().getColor(R.color.light_gray));
                 } else if(grade.getTopic_completed()==grade.getTopic_count()){
-                    Progress_TV.setTextColor(view.getResources().getColor(R.color.light_green));
+                    Progress_TV.setTextColor(view.getResources().getColor(R.color.light_green_pastel));
                 } else {
                     Progress_TV.setTextColor(view.getResources().getColor(R.color.white));
                 }

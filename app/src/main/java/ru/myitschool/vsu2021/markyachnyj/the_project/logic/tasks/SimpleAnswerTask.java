@@ -1,6 +1,9 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks;
 
-public class SimpleAnswerTask extends Task{
+import java.io.Serializable;
+
+public class SimpleAnswerTask extends Task implements Serializable {
+
     private String right_answer;
     private String given_answer;
 
@@ -22,5 +25,15 @@ public class SimpleAnswerTask extends Task{
     @Override
     public boolean CheckAnswer() {
         return right_answer.equals(given_answer);
+    }
+
+    @Override
+    public String getRightAnswer() {
+        return right_answer;
+    }
+
+    @Override
+    public String getGivenAnswer() {
+        return given_answer;
     }
 }
