@@ -17,7 +17,7 @@ public class GithubResources {
 
     public static ArrayList<Grade> getGradeArrayList() {
         ArrayList<Grade> result = new ArrayList<>();
-        result.add(new Grade(7,6,3));
+        result.add(new Grade(7,3,7));
         return result;
     }
     public static ArrayList<Topic> getTopicArrayList(int grade_number){

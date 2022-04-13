@@ -5,7 +5,7 @@ public class Grade {
     private int topic_count;
     private int topic_completed;
 
-    public Grade(int number, int topic_count, int topic_completed) {
+    public Grade(int number, int topic_completed, int topic_count) {
         this.number = number;
         this.topic_count = topic_count;
         this.topic_completed = topic_completed;
