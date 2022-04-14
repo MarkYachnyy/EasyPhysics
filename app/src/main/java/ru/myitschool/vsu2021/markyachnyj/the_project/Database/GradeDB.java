@@ -2,16 +2,18 @@ package ru.myitschool.vsu2021.markyachnyj.the_project.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
 
 public class GradeDB {
     /*TABLE INFO*/
-    private static final String DATABASE_NAME = "the_database.db";
+    private static final String DATABASE_NAME = "The_Database.db";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "grades";
 
@@ -30,7 +32,7 @@ public class GradeDB {
         database = (new OpenHelper(context)).getWritableDatabase();
     }
 
-    public int insertNewGrade(Grade grade){
+    public int insert(Grade grade){
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NUMBER, grade.getNumber());
         cv.put(COLUMN_TOPIC_COMPLETED, grade.getTopic_completed());
@@ -38,12 +40,27 @@ public class GradeDB {
         return (int)database.insert(TABLE_NAME,null,cv);
     }
 
-    public int updateGrade(Grade grade){
+    public int update(Grade grade){
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NUMBER, grade.getNumber());
         cv.put(COLUMN_TOPIC_COMPLETED, grade.getTopic_completed());
         cv.put(COLUMN_TOPIC_COUNT, grade.getTopic_count());
         return database.update(TABLE_NAME,cv,COLUMN_NUMBER+" = ?",new String[]{String.valueOf(grade.getNumber())});
+    }
+
+    public ArrayList<Grade> getAll(){
+        Cursor cursor = database.query(TABLE_NAME,null,null,null,null,null,null);
+        cursor.moveToFirst();
+        ArrayList<Grade> result = new ArrayList<>();
+        if(!cursor.isAfterLast()){
+            do{
+                int number = cursor.getInt(NUM_COLUMN_NUMBER);
+                int topic_completed = cursor.getInt(NUM_COLUMN_TOPIC_COMPLETED);
+                int topic_count = cursor.getInt(NUM_COLUMN_TOPIC_COUNT);
+                result.add(new Grade(number, topic_completed, topic_count));
+            } while (cursor.moveToNext());
+        }
+        return result;
     }
     private class OpenHelper extends SQLiteOpenHelper{
 

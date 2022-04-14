@@ -15,6 +15,17 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.Task;
 
 public class GithubResources {
 
+    private static String buildURL(String path){
+        String result = "";
+        URI uri = null;
+        try{
+            uri = new URI("https","raw.githubusercontent.com","/MarkYachnyy/The_Theory/main"+path,null);
+        } catch (URISyntaxException e){
+            e.printStackTrace();
+        }
+        return uri.toASCIIString();
+    }
+
     public static ArrayList<Grade> getGradeArrayList() {
         ArrayList<Grade> result = new ArrayList<>();
         result.add(new Grade(7,3,7));
@@ -26,13 +37,7 @@ public class GithubResources {
     public static String getTheory(String topic){
         OkHttpClient client = new OkHttpClient();
         String result="";
-        URI uri = null;
-        try{
-            uri = new URI("https","raw.githubusercontent.com","/MarkYachnyy/The_Theory/main/7/"+topic+"/theory.txt",null);
-        } catch (URISyntaxException e){
-            e.printStackTrace();
-        }
-        Request request = new Request.Builder().url(uri.toASCIIString()).build();
+        Request request = new Request.Builder().url(buildURL("/7/"+topic+"/theory.txt")).build();
         try{
             Response response = client.newCall(request).execute();
             result = response.body().string();
