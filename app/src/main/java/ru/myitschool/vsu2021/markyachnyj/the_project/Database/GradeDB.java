@@ -60,8 +60,18 @@ public class GradeDB {
                 result.add(new Grade(number, topic_completed, topic_count));
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return result;
     }
+
+    public void disintegrate(){
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+    }
+
+    public void deleteAll(){
+        database.delete(TABLE_NAME, null, null);
+    }
+
     private class OpenHelper extends SQLiteOpenHelper{
 
         OpenHelper(Context context){
