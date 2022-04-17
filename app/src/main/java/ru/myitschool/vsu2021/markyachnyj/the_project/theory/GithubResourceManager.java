@@ -9,13 +9,24 @@ import java.util.Random;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Formula;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
+import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Test;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
+import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.AnswerChoiceTask;
+import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.FormulaConstructorTask;
+import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.SimpleAnswerTask;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.Task;
 
-public class GithubResources {
+public class GithubResourceManager {
 
-    private static String buildURL(String path){
+    OkHttpClient client;
+
+    public GithubResourceManager(){
+        client = new OkHttpClient();
+    }
+
+    private String buildURL(String path){
         String result = "";
         URI uri = null;
         try{
@@ -26,18 +37,17 @@ public class GithubResources {
         return uri.toASCIIString();
     }
 
-    public static ArrayList<Grade> getGradeArrayList() {
+    public ArrayList<Grade> getGradeArrayList() {
         ArrayList<Grade> result = new ArrayList<>();
         result.add(new Grade(7,3,7));
         return result;
     }
-    public static ArrayList<Topic> getTopicArrayList(int grade_number){
+    public ArrayList<Topic> getTopicArrayList(int grade_number){
         return getTestTopicArrayList7();
     }
-    public static String getTheory(String topic){
-        OkHttpClient client = new OkHttpClient();
+    public String getTheory(String topic_name){
         String result="";
-        Request request = new Request.Builder().url(buildURL("/7/"+topic+"/theory.txt")).build();
+        Request request = new Request.Builder().url(buildURL("/7/"+topic_name+"/theory.txt")).build();
         try{
             Response response = client.newCall(request).execute();
             result = response.body().string();
@@ -47,12 +57,21 @@ public class GithubResources {
         return result;
     }
 
-    private static ArrayList<Topic> getTestTopicArrayList7(){
+    private ArrayList<Topic> getTestTopicArrayList7(){
         ArrayList<Topic> result = new ArrayList<>();
         Random random = new Random();
         for(String string:new String[]{"Масса, объём, плотность","Механическое движение", "Понятие силы","Давление","Сила Архимеда","Работа, мощность, КПД","Правило моментов"}){
             result.add(new Topic(string, (random.nextInt(101))/100f));
         };
         return result;
+    }
+
+    public Test BuildTest(Topic topic){
+        ArrayList<Task> tasks = new ArrayList<>();
+        tasks.add(new FormulaConstructorTask(new Formula("formula1",new String[]{"el1, el2"},new String[]{"el3"})));
+        for(int i=1;i<=3;i++){
+            tasks.add(new SimpleAnswerTask("exercise "+i,"answer"));
+        }
+        return new Test(topic,tasks);
     }
 }

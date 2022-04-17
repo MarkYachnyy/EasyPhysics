@@ -42,7 +42,7 @@ public class TestResultActivity extends AppCompatActivity {
         Close_Btn = (Button) findViewById(R.id.activity_test_result_close_btn);
         test = (Test) getIntent().getSerializableExtra("test");
         adapter = new TestResultAdapter(this,test);
-        Title_TV.setText("Тест по теме\""+test.getTopicName()+"\" завершён");
+        Title_TV.setText("Тест по теме\""+test.getTopic().getName()+"\" завершён");
         ListView.setAdapter(adapter);
         ProgressBar.setProgress(test.getProgress());
         Close_Btn.setOnClickListener(Close_Btn_Listener);

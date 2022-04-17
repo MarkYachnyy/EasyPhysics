@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.FormulaConstructorTask;
@@ -14,23 +15,23 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.Task;
 
 public class FormulaConstructorTaskFragment extends TaskFragment {
 
+    private TextView Exercise_TV;
+
     private FormulaConstructorTask task;
 
-    public FormulaConstructorTaskFragment() {
-        // Required empty public constructor
+    public FormulaConstructorTaskFragment(FormulaConstructorTask task) {
+        super();
+        task = task;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_formula_constructor_task, container, false);
-
+        Exercise_TV = (TextView) view.findViewById(R.id.fragment_formula_constructor_task_exercise_tv);
+        Exercise_TV.setText(task.getExercise());
         return view;
     }
-
-
-
-
 
     @Override
     public Task getTask() {

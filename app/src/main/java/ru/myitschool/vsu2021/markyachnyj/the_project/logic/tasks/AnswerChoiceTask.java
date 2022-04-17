@@ -9,6 +9,13 @@ public class AnswerChoiceTask extends Task implements Serializable {
 
     private String exercise;
 
+    public AnswerChoiceTask(String exercise, String[] answers, String right_answer){
+        this.exercise = exercise;
+        this.answers = answers;
+        this.right_answer = right_answer;
+        this.chosen_answer="";
+    }
+
     @Override
     public boolean CheckAnswer() {
         return chosen_answer.equals(right_answer);

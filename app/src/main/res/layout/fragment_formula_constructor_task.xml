@@ -8,6 +8,7 @@
     android:background="@color/light_blue">
 
     <TextView
+        android:id="@+id/fragment_formula_constructor_task.exercise_tv"
         android:layout_width="match_parent"
         android:layout_height="0sp"
         android:layout_weight="1"

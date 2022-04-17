@@ -27,9 +27,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
+import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.task_fragments.FormulaConstructorTaskFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.task_fragments.SimpleAnswerTaskFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.task_fragments.TaskFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Test;
+import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.FormulaConstructorTask;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.SimpleAnswerTask;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.Task;
 
@@ -62,13 +64,7 @@ public class TestSolverActivity extends AppCompatActivity {
         Previous_Task_Btn.setOnClickListener(Previous_Task_Btn_Listener);
         Finish_Test_Btn.setOnClickListener(Finish_Test_Btn_Listener);
         /*TEST*/
-        ArrayList<Task> tasks = new ArrayList<>();
-        for(int i=0;i<6;i++){
-            tasks.add(new SimpleAnswerTask("Exercise"+String.valueOf(i+1),"???"));
-        }
-        topic_name = getIntent().getStringExtra("topic_name");
-        Topic_Name_TV.setText(topic_name);
-        test = new Test(topic_name,tasks);
+        test = (Test) getIntent().getSerializableExtra("test");
         /*TEST*/
         PlaceExerciseButtons();
         MakeExerciseFragments();
@@ -96,6 +92,8 @@ public class TestSolverActivity extends AppCompatActivity {
             Task task = test.getTasks().get(i);
             if(task.getClass().equals(SimpleAnswerTask.class)){
                 fragment_map.put(task_buttons.get(i),new SimpleAnswerTaskFragment((SimpleAnswerTask)task));
+            } else if(task.getClass().equals(FormulaConstructorTask.class)){
+                fragment_map.put(task_buttons.get(i),new FormulaConstructorTaskFragment((FormulaConstructorTask)task));
             }
         }
     }

@@ -1,6 +1,8 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.logic;
 
-public class Topic {
+import java.io.Serializable;
+
+public class Topic implements Serializable {
     private String name;
     private float test_progress;
 

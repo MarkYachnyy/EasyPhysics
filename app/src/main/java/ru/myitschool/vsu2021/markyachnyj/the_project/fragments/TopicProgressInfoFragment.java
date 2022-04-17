@@ -1,6 +1,7 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.fragments;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -22,7 +23,9 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TestSolverActivi
 import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TheoryReaderActivity;
 import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TopicChoiceActivity;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.RoundProgressBar;
+import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Test;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
+import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResourceManager;
 
 public class TopicProgressInfoFragment extends Fragment {
 
@@ -30,6 +33,8 @@ public class TopicProgressInfoFragment extends Fragment {
     private Button Close_Btn;
     private Button Read_theory_Btn;
     private Button Start_Test_Btn;
+
+    private GithubResourceManager manager;
 
     public TopicProgressInfoFragment(Topic t){
         super();
@@ -39,6 +44,7 @@ public class TopicProgressInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        manager = new GithubResourceManager();
         View view = inflater.inflate(R.layout.fragment_topic_progress_info, container, false);
         Close_Btn = (Button)view.findViewById(R.id.fragment_topic_progress_info_close_btn);
         Read_theory_Btn = (Button) view.findViewById(R.id.fragment_topic_progress_info_read_theory_btn);
@@ -68,10 +74,8 @@ public class TopicProgressInfoFragment extends Fragment {
     private View.OnClickListener Read_Theory_Btn_Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String topic_name = topic.getName();
-            Intent i = new Intent(getActivity(), TheoryReaderActivity.class);
-            i.putExtra("topic_name",topic_name);
-            startActivity(i);
+            LoadTheoryTask task = new LoadTheoryTask();
+            task.execute();
         }
     };
 
@@ -79,7 +83,8 @@ public class TopicProgressInfoFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(getActivity(), TestSolverActivity.class);
-            i.putExtra("topic_name",topic.getName());
+            Test test = manager.BuildTest(topic);
+            i.putExtra("test",test);
             startActivity(i);
         }
     };
@@ -90,4 +95,19 @@ public class TopicProgressInfoFragment extends Fragment {
             CloseFragment();
         }
     };
+
+    private class LoadTheoryTask extends AsyncTask<Void, Void, String>{
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            return manager.getTheory(topic.getName());
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Intent i = new Intent(getActivity(), TheoryReaderActivity.class);
+            i.putExtra("theory",s);
+            startActivity(i);
+        }
+    }
 }

@@ -15,9 +15,11 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.GradeProgressInfoFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters.GradeAdapter;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
-import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResources;
+import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResourceManager;
 
 public class GradeChoiceActivity extends AppCompatActivity {
+
+    private GithubResourceManager manager;
 
     ListView listView;
     GradeAdapter adapter;
@@ -27,15 +29,10 @@ public class GradeChoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_choice);
         listView = (ListView) findViewById(R.id.activity_grade_choice_list);
-        adapter = new GradeAdapter(getApplicationContext(), GithubResources.getGradeArrayList());
+        manager = new GithubResourceManager();
+        adapter = new GradeAdapter(getApplicationContext(), manager.getGradeArrayList());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(ItemListener);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        adapter.setNewData(GithubResources.getGradeArrayList());
     }
 
     private AdapterView.OnItemClickListener ItemListener = new AdapterView.OnItemClickListener() {

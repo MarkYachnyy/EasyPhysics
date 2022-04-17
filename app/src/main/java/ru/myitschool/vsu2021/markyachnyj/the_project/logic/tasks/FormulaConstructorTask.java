@@ -49,4 +49,8 @@ public class FormulaConstructorTask extends Task implements Serializable {
         }
         return result;
     }
+
+    public String getExercise() {
+        return exercise;
+    }
 }

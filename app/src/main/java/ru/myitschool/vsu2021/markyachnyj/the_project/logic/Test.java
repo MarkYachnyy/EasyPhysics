@@ -7,12 +7,12 @@ import java.util.HashMap;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.Task;
 
 public class Test implements Serializable {
-    private String topic_name;
+    private Topic topic;
     private ArrayList<Task> tasks;
     private HashMap<Task, Boolean> given_answers;
 
-    public Test(String topic_name, ArrayList<Task> tasks) {
-        this.topic_name = topic_name;
+    public Test(Topic topic, ArrayList<Task> tasks) {
+        this.topic=topic;
         this.tasks = tasks;
         given_answers = new HashMap<>();
         for(Task task:this.tasks){
@@ -20,9 +20,7 @@ public class Test implements Serializable {
         }
     }
 
-    public String getTopicName() {
-        return topic_name;
-    }
+    public Topic getTopic(){return topic;}
 
     public void giveAnswer(Task task){
         given_answers.put(task,true);

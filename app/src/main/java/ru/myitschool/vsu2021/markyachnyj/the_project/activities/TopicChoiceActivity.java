@@ -18,7 +18,7 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.TopicProgressInfoFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters.TopicAdapter;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
-import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResources;
+import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResourceManager;
 
 public class TopicChoiceActivity extends AppCompatActivity {
 
@@ -27,13 +27,16 @@ public class TopicChoiceActivity extends AppCompatActivity {
     private ListView list;
     private Button Back_Button;
 
+    private GithubResourceManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_choice);
         Back_Button = findViewById(R.id.activity_topic_choice_back_btn);
         list = (ListView) findViewById(R.id.activity_topic_choice_list);
-        data = GithubResources.getTopicArrayList(getIntent().getIntExtra("grade_number",7));
+        manager = new GithubResourceManager();
+        data = manager.getTopicArrayList(getIntent().getIntExtra("grade_number",7));
         adapter = new TopicAdapter(getApplicationContext(),data);
         list.setAdapter(adapter);
         list.setOnItemClickListener(ItemListener);
@@ -43,7 +46,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        data = GithubResources.getTopicArrayList(getIntent().getIntExtra("grade_number",7));
+        data = manager.getTopicArrayList(getIntent().getIntExtra("grade_number",7));
         adapter = new TopicAdapter(getApplicationContext(),data);
         list.setAdapter(adapter);
     }
