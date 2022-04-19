@@ -82,10 +82,15 @@ public class TopicProgressInfoFragment extends Fragment {
     private View.OnClickListener Start_Test_Btn_Listener =new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent i = new Intent(getActivity(), TestSolverActivity.class);
-            Test test = manager.BuildTest(topic);
-            i.putExtra("test",test);
-            startActivity(i);
+            try{
+                Intent i = new Intent(getActivity(), TestSolverActivity.class);
+                Test test = manager.BuildTest(topic);
+                i.putExtra("test",test);
+                startActivity(i);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
     };
 

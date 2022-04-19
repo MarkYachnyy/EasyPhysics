@@ -18,7 +18,7 @@ public class FormulaConstructorTask extends Task implements Serializable {
         this.formula = formula;
         this.numerator = new ArrayList<>();
         this.denominator = new ArrayList<>();
-        exercise = "Составьте правильную формулу для величины: "+formula.getName();
+        exercise = "Составьте правильную формулу для величины: "+formula.getValue_name();
     }
 
     @Override
@@ -48,6 +48,10 @@ public class FormulaConstructorTask extends Task implements Serializable {
             result+=s;
         }
         return result;
+    }
+
+    public Formula getFormula() {
+        return formula;
     }
 
     public String getExercise() {

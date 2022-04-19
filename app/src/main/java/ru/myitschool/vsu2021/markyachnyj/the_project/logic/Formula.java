@@ -10,21 +10,27 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class Formula implements Serializable {
-    private String name;
+    private String value_name;
+    private String value_symbol;
 
     private ArrayList<String> numerator;
     private ArrayList<String> denominator;
 
-    public Formula(String name, String[] num, String[] denom){
-        this.name = name;
+    public Formula(String value_name,String value_symbol, String[] num, String[] denom){
+        this.value_name = value_name;
+        this.value_symbol = value_symbol;
         numerator = new ArrayList<>();
         denominator = new ArrayList<>();
         numerator.addAll(Arrays.asList(num));
-        denominator.addAll(Arrays.asList(num));
+        denominator.addAll(Arrays.asList(denom));
     }
 
-    public String getName() {
-        return name;
+    public String getValue_symbol() {
+        return value_symbol;
+    }
+
+    public String getValue_name (){
+        return value_name;
     }
 
     public ArrayList<String> getNumerator() {
