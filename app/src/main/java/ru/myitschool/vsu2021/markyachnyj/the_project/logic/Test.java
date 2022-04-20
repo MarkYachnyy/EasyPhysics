@@ -22,8 +22,8 @@ public class Test implements Serializable {
 
     public Topic getTopic(){return topic;}
 
-    public void giveAnswer(Task task){
-        given_answers.put(task,true);
+    public void giveAnswer(Task task, boolean value){
+        given_answers.put(task,value);
     }
 
     public boolean isAnswerGiven(Task task){

@@ -14,14 +14,11 @@ public class FormulaComponentPlaceholderView extends View {
 
     private final int r = 10;
     private final int border = 20;
-    private final Paint paint= new Paint();
+    private final Paint paint;
 
     public FormulaComponentPlaceholderView(Context context) {
         super(context);
-    }
-
-    public FormulaComponentPlaceholderView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        paint = new Paint();
     }
 
     @Override

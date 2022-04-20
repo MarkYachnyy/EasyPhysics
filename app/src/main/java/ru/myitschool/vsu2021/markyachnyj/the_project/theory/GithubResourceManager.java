@@ -68,7 +68,7 @@ public class GithubResourceManager {
 
     public Test BuildTest(Topic topic){
         ArrayList<Task> tasks = new ArrayList<>();
-        tasks.add(new FormulaConstructorTask(new Formula("value1","V1",new String[]{"el1", "el2"},new String[]{"el3"})));
+        tasks.add(new FormulaConstructorTask(new Formula("value1","V1",new String[]{"el1", "el2"},new String[]{"el3"}),new String[]{"el4","el5"}));
         for(int i=1;i<=3;i++){
             tasks.add(new SimpleAnswerTask("exercise "+i,"answer"));
         }

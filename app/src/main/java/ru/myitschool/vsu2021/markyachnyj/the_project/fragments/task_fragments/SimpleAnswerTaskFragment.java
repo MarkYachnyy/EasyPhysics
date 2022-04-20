@@ -48,8 +48,7 @@ public class SimpleAnswerTaskFragment extends TaskFragment{
         public void onClick(View v) {
             if(!Answer_ET.getText().toString().equals("")){
                 task.giveAnswer(Answer_ET.getText().toString());
-                ((TestSolverActivity)getActivity()).GiveAnswer(task);
-                ((TestSolverActivity)getActivity()).InvalidateTaskButtons();
+                ((TestSolverActivity)getActivity()).GiveAnswer(task, true);
                 Toast.makeText(getActivity(), "Ответ сохранён", Toast.LENGTH_SHORT).show();
             }
         }

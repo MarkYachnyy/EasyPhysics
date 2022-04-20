@@ -98,8 +98,9 @@ public class TestSolverActivity extends AppCompatActivity {
         }
     }
 
-    public void GiveAnswer(Task task){
-        test.giveAnswer(task);
+    public void GiveAnswer(Task task, boolean value){
+        test.giveAnswer(task, value);
+        InvalidateTaskButtons();
     }
 
     private Comparator<Button> task_button_cmp = new Comparator<Button>() {
@@ -164,7 +165,7 @@ public class TestSolverActivity extends AppCompatActivity {
         }
     };
 
-    public void InvalidateTaskButtons(){
+    private void InvalidateTaskButtons(){
         for(Map.Entry<Button,TaskFragment> entry:fragment_map.entrySet()){
             Task task = entry.getValue().getTask();
             if(test.isAnswerGiven(task)){

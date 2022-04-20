@@ -3,6 +3,9 @@ package ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks;
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.TreeSet;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Formula;
 
@@ -13,12 +16,14 @@ public class FormulaConstructorTask extends Task implements Serializable {
     private ArrayList<String> denominator;
 
     private String exercise;
+    private String[] extra_components;
 
-    public FormulaConstructorTask(Formula formula){
+    public FormulaConstructorTask(Formula formula, String[] extra_components){
         this.formula = formula;
         this.numerator = new ArrayList<>();
         this.denominator = new ArrayList<>();
         exercise = "Составьте правильную формулу для величины: "+formula.getValue_name();
+        this.extra_components = extra_components;
     }
 
     @Override
@@ -30,6 +35,13 @@ public class FormulaConstructorTask extends Task implements Serializable {
                 right_numerator.containsAll(numerator)&&
                 denominator.containsAll(right_denominator)&&
                 right_denominator.containsAll(denominator);
+    }
+
+    public ArrayList<String> getAllComponents(){
+        TreeSet<String> tree = new TreeSet<>(formula.getNumerator());
+        tree.addAll(formula.getDenominator());
+        tree.addAll(Arrays.asList(extra_components));
+        return new ArrayList<>(tree);
     }
 
     @Override
