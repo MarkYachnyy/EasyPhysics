@@ -1,6 +1,10 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.logic;
 
-public class Grade {
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
+
+public class Grade implements Serializable {
     private int number;
     private int topic_count;
     private int topic_completed;
@@ -25,5 +29,11 @@ public class Grade {
 
     public int getTopic_completed() {
         return topic_completed;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "{"+number+" "+topic_completed+" "+topic_count+"}";
     }
 }

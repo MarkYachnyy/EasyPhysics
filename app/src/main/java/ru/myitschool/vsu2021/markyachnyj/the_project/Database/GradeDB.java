@@ -64,6 +64,16 @@ public class GradeDB {
         return result;
     }
 
+    public boolean containsGrade(int grade_number){
+        ArrayList<Grade> list = getAll();
+        for(Grade grade:list){
+            if(grade.getNumber()==grade_number){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void disintegrate(){
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }

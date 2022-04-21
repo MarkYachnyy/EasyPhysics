@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TestSolverActivity;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.FormulaComponentPlaceholderView;
@@ -120,7 +122,7 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
                     Chosen_View = null;
                 }
             }
-            CheckIfTheAnswerIsGiven();
+            SetTaskAnswer();
         }
     };
 
@@ -133,26 +135,35 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
                 ((FrameLayout)v).addView(Chosen_View);
                 Chosen_View = null;
             }
-            CheckIfTheAnswerIsGiven();
+            SetTaskAnswer();
         }
     };
 
-    private void CheckIfTheAnswerIsGiven(){
+    private void SetTaskAnswer(){
         boolean flag = true;
+        ArrayList<String> new_numerator =  new ArrayList<>();
+        ArrayList<String> new_denominator =  new ArrayList<>();
         for(int i=0;i<numerator_size;i++){
             FrameLayout frameLayout = (FrameLayout) Numerator_LL.getChildAt(i);
-            if(frameLayout.getChildAt(1)==null){
+            FormulaComponentView view = (FormulaComponentView) frameLayout.getChildAt(1);
+            if(view==null){
                 flag = false;
-                break;
+            } else {
+                new_numerator.add(view.getText());
             }
         }
         for(int i=0;i<denominator_size;i++){
             FrameLayout frameLayout = (FrameLayout) Denominator_LL.getChildAt(i);
-            if(frameLayout.getChildAt(1)==null){
+            FormulaComponentView view = (FormulaComponentView) frameLayout.getChildAt(1);
+            if(view==null){
                 flag =false;
                 break;
+            } else {
+                new_denominator.add(view.getText());
             }
         }
+        task.setNumerator(new_numerator);
+        task.setDenominator(new_denominator);
         ((TestSolverActivity)getActivity()).GiveAnswer(task, flag);
     }
 

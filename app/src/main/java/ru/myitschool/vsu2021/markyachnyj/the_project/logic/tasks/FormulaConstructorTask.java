@@ -30,7 +30,6 @@ public class FormulaConstructorTask extends Task implements Serializable {
     public boolean CheckAnswer() {
         ArrayList<String> right_numerator = formula.getNumerator();
         ArrayList<String> right_denominator = formula.getDenominator();
-
         return numerator.containsAll(right_numerator)&&
                 right_numerator.containsAll(numerator)&&
                 denominator.containsAll(right_denominator)&&
@@ -68,5 +67,13 @@ public class FormulaConstructorTask extends Task implements Serializable {
 
     public String getExercise() {
         return exercise;
+    }
+
+    public void setNumerator(ArrayList<String> numerator) {
+        this.numerator = numerator;
+    }
+
+    public void setDenominator(ArrayList<String> denominator) {
+        this.denominator = denominator;
     }
 }

@@ -170,6 +170,8 @@ public class TestSolverActivity extends AppCompatActivity {
             Task task = entry.getValue().getTask();
             if(test.isAnswerGiven(task)){
                 ViewCompat.setBackgroundTintList(entry.getKey(), ColorStateList.valueOf(getResources().getColor(R.color.light_green_pastel)));
+            } else {
+                ViewCompat.setBackgroundTintList(entry.getKey(), ColorStateList.valueOf(getResources().getColor(R.color.red_pastel)));
             }
         }
     }

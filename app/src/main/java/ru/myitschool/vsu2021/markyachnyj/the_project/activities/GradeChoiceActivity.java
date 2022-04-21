@@ -30,7 +30,7 @@ public class GradeChoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grade_choice);
         listView = (ListView) findViewById(R.id.activity_grade_choice_list);
         manager = new GithubResourceManager();
-        adapter = new GradeAdapter(getApplicationContext(), manager.getGradeArrayList());
+        /*adapter = new GradeAdapter(getApplicationContext(), manager.getGradeArrayList());*/
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(ItemListener);
     }

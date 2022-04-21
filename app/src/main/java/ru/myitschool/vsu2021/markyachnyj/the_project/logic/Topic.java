@@ -1,5 +1,7 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.logic;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Topic implements Serializable {
@@ -19,4 +21,9 @@ public class Topic implements Serializable {
         return name;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return name+" "+test_progress;
+    }
 }

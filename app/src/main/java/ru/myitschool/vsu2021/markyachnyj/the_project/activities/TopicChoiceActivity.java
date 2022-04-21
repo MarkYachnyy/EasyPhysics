@@ -36,7 +36,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
         Back_Button = findViewById(R.id.activity_topic_choice_back_btn);
         list = (ListView) findViewById(R.id.activity_topic_choice_list);
         manager = new GithubResourceManager();
-        data = manager.getTopicArrayList(getIntent().getIntExtra("grade_number",7));
+        /*data = manager.getTopicArrayList(getIntent().getIntExtra("grade_number",7));*/
         adapter = new TopicAdapter(getApplicationContext(),data);
         list.setAdapter(adapter);
         list.setOnItemClickListener(ItemListener);
@@ -46,7 +46,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        data = manager.getTopicArrayList(getIntent().getIntExtra("grade_number",7));
+        /**data = manager.getTopicArrayList(getIntent().getIntExtra("grade_number",7));*/
         adapter = new TopicAdapter(getApplicationContext(),data);
         list.setAdapter(adapter);
     }

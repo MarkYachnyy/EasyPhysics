@@ -15,7 +15,7 @@ public class TopicDB {
     /*TABLE INFO*/
     private static final String DATABASE_NAME = "The_Database.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "topic";
+    private static final String TABLE_NAME = "topics";
 
     private static final String COLUMN_GRADE_NUMBER = "grade_number";
     private static final String COLUMN_NAME = "name";
@@ -29,7 +29,7 @@ public class TopicDB {
     private SQLiteDatabase database;
 
     public TopicDB(Context context){
-        database = (new TopicDB.OpenHelper(context)).getWritableDatabase();
+        database = (new OpenHelper(context)).getWritableDatabase();
     }
 
     public int insert(Topic topic, int grade_number){
@@ -47,6 +47,16 @@ public class TopicDB {
         return database.update(TABLE_NAME,cv,COLUMN_NAME+" = ?",new String[]{String.valueOf(topic.getName())});
     }
 
+    public boolean containsTopic(String topic_name){
+        ArrayList<Topic> list = getAll();
+        for(Topic topic:list){
+            if(topic.getName().equals(topic_name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Topic> getAll(int grade_number){
         Cursor cursor = database.query(TABLE_NAME,null,null,null,null,null,null);
         cursor.moveToFirst();
@@ -56,9 +66,24 @@ public class TopicDB {
                 int grade_number1 = cursor.getInt(NUM_COLUMN_GRADE_NUMBER);
                 if(grade_number1==grade_number){
                     String name = cursor.getString(NUM_COLUMN_NAME);
-                    float topic_count = (float) cursor.getDouble(NUM_COLUMN_TEST_PROGRESS);
-                    result.add(new Topic(name, topic_count));
+                    float test_progress = (float) cursor.getDouble(NUM_COLUMN_TEST_PROGRESS);
+                    result.add(new Topic(name, test_progress));
                 }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
+    }
+
+    private ArrayList<Topic> getAll(){
+        Cursor cursor = database.query(TABLE_NAME,null,null,null,null,null,null);
+        cursor.moveToFirst();
+        ArrayList<Topic> result = new ArrayList<>();
+        if(!cursor.isAfterLast()){
+            do{
+                String name = cursor.getString(NUM_COLUMN_NAME);
+                float test_progress = (float) cursor.getDouble(NUM_COLUMN_TEST_PROGRESS);
+                result.add(new Topic(name, test_progress));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -84,7 +109,7 @@ public class TopicDB {
             String query = "CREATE TABLE "+TABLE_NAME+" ("+
                     COLUMN_GRADE_NUMBER+" INTEGER, " +
                     COLUMN_NAME+" TEXT UNIQUE, "+
-                    COLUMN_TEST_PROGRESS+ "REAL INTEGER)";
+                    COLUMN_TEST_PROGRESS+ "REAL)";
             db.execSQL(query);
         }
 
