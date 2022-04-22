@@ -12,6 +12,7 @@ public class SimpleAnswerTask extends Task implements Serializable {
     public SimpleAnswerTask(String exercise, String right_answer) {
         this.right_answer = right_answer;
         this.exercise = exercise;
+        this.given_answer = "-";
     }
 
     public String getExercise() {
