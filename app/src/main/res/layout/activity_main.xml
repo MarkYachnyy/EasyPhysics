@@ -7,6 +7,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainMenuActivity"
-    android:background="@color/main_bg_green">
-
+    android:background="@color/dark_blue_pastel">
 </FrameLayout>

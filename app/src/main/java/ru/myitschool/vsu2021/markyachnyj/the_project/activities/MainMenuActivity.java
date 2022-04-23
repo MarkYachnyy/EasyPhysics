@@ -5,6 +5,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.ViewCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
@@ -30,6 +31,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private LinearLayout No_Internet_LL;
     private FrameLayout Screen_FL;
+    private TextView Loading_Info_TV;
 
     private DatabaseManager databaseManager;
     private GithubResourceManager manager;
@@ -42,7 +44,7 @@ public class MainMenuActivity extends AppCompatActivity {
         databaseManager = new DatabaseManager(MainMenuActivity.this);
         manager = new GithubResourceManager();
         if(isNetworkConnected()){
-            (new CheckDataBaseRelevanceTask()).execute();
+            StartGradeChoiceActivityTask();
         } else {
             ShowNoInternetLayout();
         }
@@ -68,7 +70,7 @@ public class MainMenuActivity extends AppCompatActivity {
                     for(String s:topic_names){
                         boolean b = databaseManager.containsTopic(s);
                         if(!b){
-                            databaseManager.insertTopic(new Topic(s,0f),number);
+                            databaseManager.insertTopic(new Topic(number, s,0f),number);
                         }
                     }
                 }
@@ -81,17 +83,23 @@ public class MainMenuActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void v) {
             super.onPostExecute(v);
+            Loading_Info_TV.setText("Загрузка данных...");
+            (new LoadGradeListAndStartActivityTask()).execute();
         }
     }
-    private class LoadGradeListTask extends AsyncTask<Void, Void, Void>{
+    private class LoadGradeListAndStartActivityTask extends AsyncTask<Void, Void, ArrayList<Grade>>{
         @Override
-        protected Void doInBackground(Void... voids) {
-            return null;
+        protected ArrayList<Grade> doInBackground(Void... voids) {
+            ArrayList<Grade> result = databaseManager.getAllGrades();
+            return result;
         }
 
         @Override
-        protected void onPostExecute(Void unused) {
-            super.onPostExecute(unused);
+        protected void onPostExecute(ArrayList<Grade> a) {
+            super.onPostExecute(a);
+            Intent i = new Intent(MainMenuActivity.this, GradeChoiceActivity.class);
+            i.putExtra("grade_list",a);
+            startActivity(i);
         }
     }
     private boolean isNetworkConnected() {
@@ -102,9 +110,12 @@ public class MainMenuActivity extends AppCompatActivity {
         No_Internet_LL = new LinearLayout(this);
         No_Internet_LL.setOrientation(LinearLayout.VERTICAL);
         No_Internet_LL.setGravity(Gravity.CENTER);
-        FrameLayout.LayoutParams lp0 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        FrameLayout.LayoutParams lp0 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp0.gravity = Gravity.CENTER;
+        lp0.setMargins(20,0,20,0);
         No_Internet_LL.setLayoutParams(lp0);
         Screen_FL.addView(No_Internet_LL);
+        No_Internet_LL.setBackgroundColor(getResources().getColor(R.color.main_bg_green));
         SimpleDrawable drawable = new SimpleDrawable(this);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(600,600);
         drawable.setLayoutParams(lp);
@@ -120,15 +131,36 @@ public class MainMenuActivity extends AppCompatActivity {
         No_Internet_LL.addView(tv);
         Button btn = new Button(this);
         btn.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_autorenew_45,null),null,null,null);
-        ViewCompat.setBackgroundTintList(btn, ColorStateList.valueOf(getResources().getColor(R.color.dark_blue_pastel)));
+        ViewCompat.setBackgroundTintList(btn, ColorStateList.valueOf(getResources().getColor(R.color.light_blue)));
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         btn.setLayoutParams(lp2);
+        btn.setTextSize(20);
+        btn.setTextColor(getResources().getColor(R.color.white));
+        btn.setText("переподключиться");
         No_Internet_LL.addView(btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                btn.setText("попробовать снова");
+                if(isNetworkConnected()){
+                    Screen_FL.removeView(No_Internet_LL);
+                    StartGradeChoiceActivityTask();
+                }
             }
         });
+    }
+    private void StartGradeChoiceActivityTask(){
+        Loading_Info_TV = new TextView(this);
+        FrameLayout.LayoutParams lp0 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp0.gravity = Gravity.CENTER;
+        Loading_Info_TV.setLayoutParams(lp0);
+        int padding = 5;
+        Loading_Info_TV.setPadding(padding, padding, padding, padding);
+        Loading_Info_TV.setText("Проверка актуальности базы данных...");
+        Loading_Info_TV.setTextColor(getResources().getColor(R.color.white));
+        Loading_Info_TV.setTextSize(30);
+        Loading_Info_TV.setGravity(Gravity.CENTER);
+        Screen_FL.addView(Loading_Info_TV);
+        (new CheckDataBaseRelevanceTask()).execute();
     }
 }

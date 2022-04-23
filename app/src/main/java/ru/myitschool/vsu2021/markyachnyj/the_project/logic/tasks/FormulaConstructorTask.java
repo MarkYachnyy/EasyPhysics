@@ -16,9 +16,9 @@ public class FormulaConstructorTask extends Task implements Serializable {
     private ArrayList<String> denominator;
 
     private String exercise;
-    private String[] extra_components;
+    private ArrayList<String> extra_components;
 
-    public FormulaConstructorTask(Formula formula, String[] extra_components){
+    public FormulaConstructorTask(Formula formula, ArrayList<String> extra_components){
         this.formula = formula;
         this.numerator = new ArrayList<>();
         this.denominator = new ArrayList<>();
@@ -39,7 +39,7 @@ public class FormulaConstructorTask extends Task implements Serializable {
     public ArrayList<String> getAllComponents(){
         TreeSet<String> tree = new TreeSet<>(formula.getNumerator());
         tree.addAll(formula.getDenominator());
-        tree.addAll(Arrays.asList(extra_components));
+        tree.addAll(extra_components);
         return new ArrayList<>(tree);
     }
 

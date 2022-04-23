@@ -23,17 +23,30 @@ public class GithubResourceManager {
 
     private OkHttpClient client;
     private Gson gson;
+    private Random random;
 
     public GithubResourceManager(){
         client = new OkHttpClient();
         gson = new Gson();
+        random = new Random();
+    }
+
+    private ArrayList<String> getRandom(ArrayList<String> list, int number){
+        ArrayList<String> result = new ArrayList<>();
+        for(int i=0;i<number;i++){
+            String s = list.get(random.nextInt(list.size()));
+            if(!result.contains(s)){
+                result.add(s);
+            }
+        }
+        return result;
     }
 
     private String buildURL(String path){
         String result = "";
         URI uri = null;
         try{
-            uri = new URI("https","raw.githubusercontent.com","/MarkYachnyy/The_Theory/main"+path,null);
+            uri = new URI("https","raw.githubusercontent.com","/MarkYachnyy/The_Theory/main/"+path,null);
         } catch (URISyntaxException e){
             e.printStackTrace();
         }
@@ -54,7 +67,7 @@ public class GithubResourceManager {
 
     public ArrayList<Integer> getGradeArrayList() {
         String json;
-        json = executeCall("/grade_list.json");
+        json = executeCall("grade_list.json");
         ArrayList<String> arr = gson.fromJson(json,ArrayList.class);
         ArrayList<Integer> result = new ArrayList<>();
         for(String s:arr){
@@ -63,31 +76,40 @@ public class GithubResourceManager {
         return result;
     }
     public Grade getEmptyGrade(int grade_number){
-        String json = executeCall("/"+grade_number+"/empty_grade.json");
+        String json = executeCall(grade_number+"/empty_grade.json");
         return gson.fromJson(json, Grade.class);
     }
     public ArrayList<String> getTopicArrayList(int grade_number){
-        String json = executeCall("/"+grade_number+"/topic_list.json");
+        String json = executeCall(grade_number+"/topic_list.json");
         ArrayList<String> result = gson.fromJson(json, ArrayList.class);
         return result;
     }
 
-    public String getTheory(String topic_name){
-        return executeCall("/7/"+topic_name+"/theory.txt");
+    public String getTheory(Topic topic){
+        return executeCall(topic.getGrade_number()+"/"+topic.getName()+"/theory.txt");
     }
 
-    private ArrayList<Topic> getTestTopicArrayList7(){
-        ArrayList<Topic> result = new ArrayList<>();
-        Random random = new Random();
-        for(String string:new String[]{"Масса, объём, плотность","Механическое движение", "Понятие силы","Давление","Сила Архимеда","Работа, мощность, КПД","Правило моментов"}){
-            result.add(new Topic(string, (random.nextInt(101))/100f));
-        };
-        return result;
+    private ArrayList<String> getAllComponents(int grade_number){
+        return gson.fromJson(executeCall(grade_number+"/components.json"),ArrayList.class);
+    }
+
+    private FormulaConstructorTask getFormulaConstructorTask(Topic topic){
+        String json = (String) getRandom(gson.fromJson(executeCall(topic.getGrade_number()+"/"+topic.getName()+"/formulas.json"),ArrayList.class),1).get(0);
+        Formula formula = gson.fromJson(json,Formula.class);
+        ArrayList<String> all_components = getAllComponents(topic.getGrade_number());
+        ArrayList<String> extra_components = new ArrayList<>();
+        while(extra_components.size()<2){
+            String s = getRandom(all_components,1).get(0);
+            if((!extra_components.contains(s))&&(!formula.getNumerator().contains(s))&&(!formula.getDenominator().contains(s))){
+                extra_components.add(s);
+            }
+        }
+        return new FormulaConstructorTask(formula, extra_components);
     }
 
     public Test BuildTest(Topic topic){
         ArrayList<Task> tasks = new ArrayList<>();
-        tasks.add(new FormulaConstructorTask(new Formula("value1","V1",new String[]{"el1", "el2"},new String[]{"el3"}),new String[]{"el4","el5"}));
+        tasks.add(getFormulaConstructorTask(topic));
         for(int i=1;i<=3;i++){
             tasks.add(new SimpleAnswerTask("exercise "+i,"answer"));
         }

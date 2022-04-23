@@ -105,7 +105,7 @@ public class TopicProgressInfoFragment extends Fragment {
 
         @Override
         protected String doInBackground(Void... voids) {
-            return manager.getTheory(topic.getName());
+            return manager.getTheory(topic);
         }
 
         @Override

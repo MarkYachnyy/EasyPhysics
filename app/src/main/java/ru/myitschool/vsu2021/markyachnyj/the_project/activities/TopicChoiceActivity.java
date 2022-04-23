@@ -36,19 +36,11 @@ public class TopicChoiceActivity extends AppCompatActivity {
         Back_Button = findViewById(R.id.activity_topic_choice_back_btn);
         list = (ListView) findViewById(R.id.activity_topic_choice_list);
         manager = new GithubResourceManager();
-        /*data = manager.getTopicArrayList(getIntent().getIntExtra("grade_number",7));*/
+        data = (ArrayList<Topic>) getIntent().getSerializableExtra("topic_list");
         adapter = new TopicAdapter(getApplicationContext(),data);
         list.setAdapter(adapter);
         list.setOnItemClickListener(ItemListener);
         Back_Button.setOnClickListener(Back_Btn_Listener);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        /**data = manager.getTopicArrayList(getIntent().getIntExtra("grade_number",7));*/
-        adapter = new TopicAdapter(getApplicationContext(),data);
-        list.setAdapter(adapter);
     }
 
     private View.OnClickListener Back_Btn_Listener = new View.OnClickListener() {

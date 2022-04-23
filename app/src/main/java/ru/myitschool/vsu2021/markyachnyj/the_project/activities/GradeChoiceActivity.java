@@ -11,6 +11,9 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import ru.myitschool.vsu2021.markyachnyj.the_project.Database.DatabaseManager;
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.GradeProgressInfoFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters.GradeAdapter;
@@ -19,26 +22,31 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResourceManage
 
 public class GradeChoiceActivity extends AppCompatActivity {
 
-    private GithubResourceManager manager;
-
     ListView listView;
     GradeAdapter adapter;
+
+    private DatabaseManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_choice);
         listView = (ListView) findViewById(R.id.activity_grade_choice_list);
-        manager = new GithubResourceManager();
-        /*adapter = new GradeAdapter(getApplicationContext(), manager.getGradeArrayList());*/
+        adapter = new GradeAdapter(getApplicationContext(), (ArrayList<Grade>) getIntent().getSerializableExtra("grade_list"));
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(ItemListener);
+        manager = new DatabaseManager(this);
     }
 
     private AdapterView.OnItemClickListener ItemListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            OpenInfoFragment((Grade) adapter.getItem(position));
+            try{
+                OpenInfoFragment((Grade) adapter.getItem(position));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
     };
 
@@ -53,6 +61,10 @@ public class GradeChoiceActivity extends AppCompatActivity {
         transaction.setCustomAnimations(R.anim.fragment_grade_topic_progress_info_enter,R.anim.fragment_grade_topic_progress_info_exit);
         transaction.add(R.id.activity_grade_choice_grade_info_fragment_holder,fragment);
         transaction.commit();
+    }
+
+    public DatabaseManager getDatabaseManager(){
+        return manager;
     }
 
 }

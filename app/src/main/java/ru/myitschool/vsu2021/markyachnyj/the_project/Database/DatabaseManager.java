@@ -132,7 +132,7 @@ public class DatabaseManager {
                 if(grade_number1==grade_number){
                     String name = cursor.getString(NUM_COLUMN_TOPIC_NAME);
                     float test_progress = (float) cursor.getDouble(NUM_COLUMN_TOPIC_TEST_PROGRESS);
-                    result.add(new Topic(name, test_progress));
+                    result.add(new Topic(grade_number1,name, test_progress));
                 }
             } while (cursor.moveToNext());
         }
@@ -146,9 +146,10 @@ public class DatabaseManager {
         ArrayList<Topic> result = new ArrayList<>();
         if(!cursor.isAfterLast()){
             do{
+                int grade_number = cursor.getInt(NUM_COLUMN_TOPIC_GRADE_NUMBER);
                 String name = cursor.getString(NUM_COLUMN_TOPIC_NAME);
                 float test_progress = (float) cursor.getDouble(NUM_COLUMN_TOPIC_TEST_PROGRESS);
-                result.add(new Topic(name, test_progress));
+                result.add(new Topic(grade_number, name, test_progress));
             } while (cursor.moveToNext());
         }
         cursor.close();
