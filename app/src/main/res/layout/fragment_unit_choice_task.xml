@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.task_fragments.UnitChoiceTaskFragment"
+    android:background="@color/light_blue"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/fragment_unit_choice_task.exercise_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:background="@color/dark_blue_pastel"
+        android:layout_margin="5sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="30sp"/>
+    <RadioGroup
+        android:id="@+id/fragment_unit_choice_task.answers_rg"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="3"/>
+
+</LinearLayout>

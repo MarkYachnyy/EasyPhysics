@@ -1,5 +1,7 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks;
 
+import androidx.annotation.Nullable;
+
 import java.io.Serializable;
 
 public class SimpleAnswerTask extends Task implements Serializable {
