@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,10 +31,12 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.task_fragments.FormulaConstructorTaskFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.task_fragments.SimpleAnswerTaskFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.task_fragments.TaskFragment;
+import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.task_fragments.UnitChoiceTaskFragment;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Test;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.FormulaConstructorTask;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.SimpleAnswerTask;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.Task;
+import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.UnitChoiceTask;
 
 public class TestSolverActivity extends AppCompatActivity {
 
@@ -41,7 +44,6 @@ public class TestSolverActivity extends AppCompatActivity {
     private HashMap<Button, TaskFragment> fragment_map;
     private ArrayList<Button> task_buttons;
     private int current_task_id=0;
-    private String topic_name;
 
     private LinearLayout Task_Buttons_LL;
     private TextView Topic_Name_TV;
@@ -69,6 +71,8 @@ public class TestSolverActivity extends AppCompatActivity {
         PlaceExerciseButtons();
         MakeExerciseFragments();
         task_buttons.get(0).callOnClick();
+        Topic_Name_TV.setText(test.getTopic().getName());
+        Toast.makeText(this, ""+(fragment_map.get(task_buttons.get(1))==null), Toast.LENGTH_SHORT).show();
     }
 
     private void PlaceExerciseButtons(){
@@ -94,6 +98,8 @@ public class TestSolverActivity extends AppCompatActivity {
                 fragment_map.put(task_buttons.get(i),new SimpleAnswerTaskFragment((SimpleAnswerTask)task));
             } else if(task.getClass().equals(FormulaConstructorTask.class)){
                 fragment_map.put(task_buttons.get(i),new FormulaConstructorTaskFragment((FormulaConstructorTask)task));
+            } else if(task.getClass().equals(UnitChoiceTask.class)){
+                fragment_map.put(task_buttons.get(i),new UnitChoiceTaskFragment((UnitChoiceTask) task));
             }
         }
     }
@@ -128,7 +134,7 @@ public class TestSolverActivity extends AppCompatActivity {
                 } else {
                     ft.setCustomAnimations(R.anim.fragment_task_enter_from_left, R.anim.fragment_task_exit_to_right);
                 }
-                ft.replace(R.id.activity_test_solver_task_fragment_holder_fl, fragment_map.get(v));
+                ft.replace(R.id.activity_test_solver_task_fragment_holder_fl, fragment_map.get((Button)v));
                 ft.commit();
                 current_task_id = new_current_task_id;
             }
@@ -186,7 +192,7 @@ public class TestSolverActivity extends AppCompatActivity {
             }
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.alert_dialog_finish_test,null);
+        View view = View.inflate(this,R.layout.alert_dialog_finish_test,null);
         TextView Message_TV = (TextView) view.findViewById(R.id.alert_dialog_finish_test_message_tv);
         if(are_answers_chosen){
             Message_TV.setText("Завершить тест?");

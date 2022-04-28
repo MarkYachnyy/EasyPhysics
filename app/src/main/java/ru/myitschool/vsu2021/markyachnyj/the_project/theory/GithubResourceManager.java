@@ -1,11 +1,16 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.theory;
 
+import android.view.View;
+
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import okhttp3.OkHttpClient;
@@ -33,15 +38,21 @@ public class GithubResourceManager {
         random = new Random();
     }
 
-    private ArrayList<String> getRandom(ArrayList<String> list, int number){
-        ArrayList<String> result = new ArrayList<>();
+    private ArrayList getRandom(ArrayList list, int number){
+        ArrayList result = new ArrayList<>();
         for(int i=0;i<number;i++){
-            String s = list.get(random.nextInt(list.size()));
+            Object s = list.get(random.nextInt(list.size()));
             if(!result.contains(s)){
                 result.add(s);
             }
         }
         return result;
+    }
+
+    private ArrayList getRandom(Object[] list, int number){
+        ArrayList result = new ArrayList();
+        result.addAll(Arrays.asList(list));
+        return getRandom(result,number);
     }
 
     private String buildURL(String path){
@@ -71,11 +82,8 @@ public class GithubResourceManager {
         String json;
         json = executeCall("grade_list.json");
         ArrayList<String> arr = gson.fromJson(json,ArrayList.class);
-        ArrayList<Integer> result = new ArrayList<>();
-        for(String s:arr){
-            result.add(Integer.parseInt(s));
-        }
-        return result;
+        Integer[] result = gson.fromJson(json, Integer[].class);
+        return new ArrayList<>(Arrays.asList(result));
     }
     public Grade getEmptyGrade(int grade_number){
         String json = executeCall(grade_number+"/empty_grade.json");
@@ -100,12 +108,11 @@ public class GithubResourceManager {
     }
 
     private UnitChoiceTask getRandomUnitChoiceTask(Topic topic){
-        String json = (String) getRandom(gson.fromJson(executeCall(topic.getGrade_number()+"/"+topic.getName()+"/measures.json"),ArrayList.class),1).get(0);
-        Measure measure = gson.fromJson(json, Measure.class);
+        Measure measure = (Measure) getRandom(gson.fromJson(executeCall(topic.getGrade_number()+"/"+topic.getName()+"/measures.json"),Measure[].class),1).get(0);
         ArrayList<String> all_units = getAllUnits(topic.getGrade_number());
         ArrayList<String> extra_units = new ArrayList<>();
         while (extra_units.size()<3) {
-            String s = getRandom(all_units, 1).get(0);
+            String s = (String) getRandom(all_units, 1).get(0);
             if ((!s.equals(measure.getUnit()) && (!extra_units.contains(s)))) {
                 extra_units.add(s);
             }
@@ -114,13 +121,15 @@ public class GithubResourceManager {
     }
 
     private FormulaConstructorTask getRandomFormulaConstructorTask(Topic topic){
-        String json = (String) getRandom(gson.fromJson(executeCall(topic.getGrade_number()+"/"+topic.getName()+"/formulas.json"),ArrayList.class),1).get(0);
-        Formula formula = gson.fromJson(json,Formula.class);
+        Formula[] formulas = gson.fromJson(executeCall(topic.getGrade_number()+"/"+topic.getName()+"/formulas.json"),Formula[].class);
+        Formula formula = (Formula) getRandom(formulas,1).get(0);
         ArrayList<String> all_components = getAllComponents(topic.getGrade_number());
         ArrayList<String> extra_components = new ArrayList<>();
+        ArrayList<String> numerator = new ArrayList<>(Arrays.asList(formula.getNumerator()));
+        ArrayList<String> denominator = new ArrayList<>(Arrays.asList(formula.getDenominator()));
         while(extra_components.size()<2){
-            String s = getRandom(all_components,1).get(0);
-            if((!extra_components.contains(s))&&(!formula.getNumerator().contains(s))&&(!formula.getDenominator().contains(s))&&(!extra_components.contains(s.toLowerCase()))&&(!formula.getNumerator().contains(s.toLowerCase()))&&(!formula.getDenominator().contains(s.toLowerCase()))){
+            String s = (String) getRandom(all_components,1).get(0);
+            if((!extra_components.contains(s))&&(!numerator.contains(s))&&(!denominator.contains(s))&&(!extra_components.contains(s.toLowerCase()))&&(!numerator.contains(s.toLowerCase()))&&(!denominator.contains(s.toLowerCase()))){
                 extra_components.add(s);
             }
         }
@@ -129,12 +138,13 @@ public class GithubResourceManager {
     }
 
     private SimpleAnswerTask getRandomSimpleAnswerTask(Topic topic, int tier_123){
-        ArrayList<String> arr = gson.fromJson(executeCall(topic.getGrade_number()+"/"+topic.getName()+"/"+tier_123+".json"),ArrayList.class);
-        return gson.fromJson(getRandom(arr,1).get(0),SimpleAnswerTask.class);
+        SimpleAnswerTask[] arr = gson.fromJson(executeCall(topic.getGrade_number()+"/"+topic.getName()+"/"+tier_123+".json"),SimpleAnswerTask[].class);
+        return (SimpleAnswerTask) getRandom(arr,1).get(0);
     }
 
     public Test BuildTest(Topic topic){
         ArrayList<Task> tasks = new ArrayList<>();
+
         tasks.add(getRandomFormulaConstructorTask(topic));
         tasks.add(getRandomUnitChoiceTask(topic));
         for(int i=1;i<=3;i++){

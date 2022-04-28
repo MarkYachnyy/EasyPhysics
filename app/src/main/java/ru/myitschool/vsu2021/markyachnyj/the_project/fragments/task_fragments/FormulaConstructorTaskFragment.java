@@ -44,8 +44,8 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
     public FormulaConstructorTaskFragment(FormulaConstructorTask task) {
         super();
         this.task = task;
-        numerator_size = task.getFormula().getNumerator().size();
-        denominator_size = task.getFormula().getDenominator().size();
+        numerator_size = task.getFormula().getNumerator().length;
+        denominator_size = task.getFormula().getDenominator().length;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
             fl.setOnClickListener(FormulaComponentViewPlaceHolderFLListener);
             fl.addView(new FormulaComponentPlaceholderView(getActivity()));
         }
-        if(!task.getFormula().getDenominator().isEmpty()){
+        if(!(task.getFormula().getDenominator().length==0)){
             Denominator_LL = new LinearLayout(getActivity());
             LinearLayout.LayoutParams params =new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,0,1);
             Denominator_LL.setLayoutParams(params);

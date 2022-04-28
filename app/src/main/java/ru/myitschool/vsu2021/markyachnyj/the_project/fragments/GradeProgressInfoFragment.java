@@ -86,6 +86,7 @@ public class GradeProgressInfoFragment extends Fragment {
             super.onPostExecute(topics);
             Intent i = new Intent(getActivity(), TopicChoiceActivity.class);
             i.putExtra("topic_list",topics);
+            i.putExtra("grade",grade);
             startActivity(i);
             CloseFragment();
         }

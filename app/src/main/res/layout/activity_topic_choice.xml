@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_topic_choice.screen_fl"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.StaticBGView
@@ -17,12 +18,27 @@
             android:background="@color/light_blue">
             <Button
                 android:id="@+id/activity_topic_choice.back_btn"
-                android:layout_marginLeft="10sp"
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
                 android:layout_gravity="center_vertical"
                 android:backgroundTint="@color/red"
                 android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_30"/>
+            <TextView
+                android:id="@+id/activity_topic_choice.grade_tv"
+                android:layout_width="0sp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:text="n класс"/>
+            <View
+                android:layout_width="0sp"
+                android:layout_marginRight="5sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
         </LinearLayout>
         <ListView
             android:id="@+id/activity_topic_choice.list"

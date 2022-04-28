@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.TreeSet;
 
@@ -28,8 +29,8 @@ public class FormulaConstructorTask extends Task implements Serializable {
 
     @Override
     public boolean CheckAnswer() {
-        ArrayList<String> right_numerator = formula.getNumerator();
-        ArrayList<String> right_denominator = formula.getDenominator();
+        ArrayList<String> right_numerator = (ArrayList<String>) Arrays.asList(formula.getNumerator());
+        ArrayList<String> right_denominator = (ArrayList<String>)Arrays.asList(formula.getDenominator()) ;
         return numerator.containsAll(right_numerator)&&
                 right_numerator.containsAll(numerator)&&
                 denominator.containsAll(right_denominator)&&
@@ -37,8 +38,8 @@ public class FormulaConstructorTask extends Task implements Serializable {
     }
 
     public ArrayList<String> getAllComponents(){
-        TreeSet<String> tree = new TreeSet<>(formula.getNumerator());
-        tree.addAll(formula.getDenominator());
+        TreeSet<String> tree = new TreeSet<>(Arrays.asList(formula.getNumerator()));
+        tree.addAll(Arrays.asList(formula.getDenominator()));
         tree.addAll(extra_components);
         return new ArrayList<>(tree);
     }

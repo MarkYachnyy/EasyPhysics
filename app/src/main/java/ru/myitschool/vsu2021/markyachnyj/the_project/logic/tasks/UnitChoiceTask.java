@@ -27,7 +27,7 @@ public class UnitChoiceTask extends Task implements Serializable {
         return chosen_answer;
     }
 
-    public ArrayList<String> getAnswers() {
+    public ArrayList<String> getAllAnswers() {
         return answers;
     }
 

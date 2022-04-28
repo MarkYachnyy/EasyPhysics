@@ -53,8 +53,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
         @Override
         protected Void  doInBackground(Void... voids) {
-            String result = "";
-            try{
                 ArrayList<Integer> grade_numbers = manager.getGradeArrayList();
                 for(int number:grade_numbers){
                     boolean b = databaseManager.containsGrade(number);
@@ -74,9 +72,6 @@ public class MainMenuActivity extends AppCompatActivity {
                         }
                     }
                 }
-            } catch (Exception e){
-                e.printStackTrace();
-            }
             return null;
         }
 
