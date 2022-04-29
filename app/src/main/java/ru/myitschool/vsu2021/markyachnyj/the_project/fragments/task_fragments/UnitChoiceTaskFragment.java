@@ -51,6 +51,7 @@ public class UnitChoiceTaskFragment extends TaskFragment {
                 ((TestSolverActivity)getActivity()).GiveAnswer(task, true);
             });
         }
+
         return view;
     }
 
