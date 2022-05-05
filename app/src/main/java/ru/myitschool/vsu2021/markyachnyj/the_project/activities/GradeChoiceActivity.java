@@ -1,13 +1,17 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
@@ -16,16 +20,13 @@ import java.util.ArrayList;
 import ru.myitschool.vsu2021.markyachnyj.the_project.Database.DatabaseManager;
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.GradeProgressInfoFragment;
-import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters.GradeAdapter;
+import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Adapters.GradeAdapter;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
-import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResourceManager;
 
 public class GradeChoiceActivity extends AppCompatActivity {
 
     ListView listView;
     GradeAdapter adapter;
-
-    private DatabaseManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,11 @@ public class GradeChoiceActivity extends AppCompatActivity {
         adapter = new GradeAdapter(getApplicationContext(), (ArrayList<Grade>) getIntent().getSerializableExtra("grade_list"));
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(ItemListener);
-        manager = new DatabaseManager(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        ShowExitAlertDialog();
     }
 
     private AdapterView.OnItemClickListener ItemListener = new AdapterView.OnItemClickListener() {
@@ -63,8 +68,20 @@ public class GradeChoiceActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public DatabaseManager getDatabaseManager(){
-        return manager;
+    private void ShowExitAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = (LayoutInflater.from(this)).inflate(R.layout.alert_dialog_exit_app,(FrameLayout)findViewById(R.id.alert_dialog_exit_app_dialog_holder));
+        ((Button) view.findViewById(R.id.alert_dialog_exit_app_negative_btn)).setOnClickListener(v -> {
+            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+            homeIntent.addCategory( Intent.CATEGORY_HOME );
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
+        });
+        builder.setView(view);
+        AlertDialog dialog  =builder.create();
+        dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+        ((Button) view.findViewById(R.id.alert_dialog_exit_app_positive_btn)).setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
     }
 
 }

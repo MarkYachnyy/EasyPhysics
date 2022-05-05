@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -50,6 +51,7 @@ public class TestSolverActivity extends AppCompatActivity {
     private ImageButton Next_Task_Btn;
     private ImageButton Previous_Task_Btn;
     private ImageButton Finish_Test_Btn;
+    private ImageButton Exit_Test_Btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +62,13 @@ public class TestSolverActivity extends AppCompatActivity {
         Next_Task_Btn = (ImageButton) findViewById(R.id.activity_test_solver_next_task_btn);
         Previous_Task_Btn = (ImageButton) findViewById(R.id.activity_test_solver_previous_task_btn);
         Finish_Test_Btn = (ImageButton) findViewById(R.id.activity_test_solver_finish_test_btn);
+        Exit_Test_Btn = (ImageButton) findViewById(R.id.activity_test_solver_exit_test_btn);
         task_buttons = new ArrayList<>();
         fragment_map = new HashMap<>();
         Next_Task_Btn.setOnClickListener(Next_Task_Btn_Listener);
         Previous_Task_Btn.setOnClickListener(Previous_Task_Btn_Listener);
         Finish_Test_Btn.setOnClickListener(Finish_Test_Btn_Listener);
+        Exit_Test_Btn.setOnClickListener(Exit_Test_Btn_Listener);
         /*TEST*/
         test = (Test) getIntent().getSerializableExtra("test");
         /*TEST*/
@@ -72,7 +76,11 @@ public class TestSolverActivity extends AppCompatActivity {
         MakeExerciseFragments();
         task_buttons.get(0).callOnClick();
         Topic_Name_TV.setText(test.getTopic().getName());
-        Toast.makeText(this, ""+(fragment_map.get(task_buttons.get(1))==null), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Exit_Test_Btn.callOnClick();
     }
 
     private void PlaceExerciseButtons(){
@@ -164,12 +172,9 @@ public class TestSolverActivity extends AppCompatActivity {
         }
     };
 
-    private View.OnClickListener Finish_Test_Btn_Listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            ShowFinishTestAlertDialog();
-        }
-    };
+    private View.OnClickListener Finish_Test_Btn_Listener = v -> ShowFinishTestAlertDialog();
+
+    private View.OnClickListener Exit_Test_Btn_Listener = v -> ShowExitTestAlertDialog();
 
     private void InvalidateTaskButtons(){
         for(Map.Entry<Button,TaskFragment> entry:fragment_map.entrySet()){
@@ -192,7 +197,7 @@ public class TestSolverActivity extends AppCompatActivity {
             }
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = View.inflate(this,R.layout.alert_dialog_finish_test,null);
+        View view = (LayoutInflater.from(this)).inflate(R.layout.alert_dialog_finish_test,findViewById(R.id.alert_dialog_finish_test_dialog_holder));
         TextView Message_TV = (TextView) view.findViewById(R.id.alert_dialog_finish_test_message_tv);
         if(are_answers_chosen){
             Message_TV.setText("Завершить тест?");
@@ -201,20 +206,24 @@ public class TestSolverActivity extends AppCompatActivity {
         }
         builder.setView(view);
         AlertDialog dialog = builder.create();
-        ((Button)view.findViewById(R.id.alert_dialog_finish_test_negative_btn)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
+        dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+        ((Button)view.findViewById(R.id.alert_dialog_finish_test_negative_btn)).setOnClickListener(v -> dialog.dismiss());
+        ((Button)view.findViewById(R.id.alert_dialog_finish_test_positive_btn)).setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(),TestResultActivity.class);
+            i.putExtra("test",test);
+            startActivity(i);
         });
-        ((Button)view.findViewById(R.id.alert_dialog_finish_test_positive_btn)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),TestResultActivity.class);
-                i.putExtra("test",test);
-                startActivity(i);
-            }
-        });
+        dialog.show();
+    }
+
+    private void ShowExitTestAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = (LayoutInflater.from(this)).inflate(R.layout.alert_dialog_exit_test,(LinearLayout)findViewById(R.id.alert_dialog_exit_test_dialog_holder));
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+        ((Button)view.findViewById(R.id.alert_dialog_exit_test_negative_btn)).setOnClickListener(v -> TestSolverActivity.this.finish());
+        ((Button)view.findViewById(R.id.alert_dialog_exit_test_positive_btn)).setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }
 }

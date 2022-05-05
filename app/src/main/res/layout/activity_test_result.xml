@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="0sp"
             android:layout_weight="1"
-            android:background="@color/light_blue">
+            android:background="@color/dark_blue_pastel">
             <Button
                 android:id="@+id/activity_test_result.close_btn"
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:background="@color/light_blue"
+            android:background="@color/dark_blue_pastel"
             android:text="Тест по теме [topic_name] завершён"/>
         <FrameLayout
             android:layout_width="match_parent"

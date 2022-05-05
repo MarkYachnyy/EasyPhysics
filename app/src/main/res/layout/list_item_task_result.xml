@@ -78,7 +78,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:text="[right_answer]"
+                android:text="[Показать ответ]"
                 android:textSize="20sp"/>
         </LinearLayout>
     </LinearLayout>

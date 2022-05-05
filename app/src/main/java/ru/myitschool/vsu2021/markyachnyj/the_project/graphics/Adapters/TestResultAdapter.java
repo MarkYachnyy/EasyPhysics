@@ -1,4 +1,4 @@
-package ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters;
+package ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -43,7 +43,9 @@ public class TestResultAdapter extends BaseAdapter {
         }
         Task task = (Task) getItem(position);
         ((TextView) convertView.findViewById(R.id.list_item_task_result_given_answer_tv)).setText(task.getGivenAnswer());
-        ((TextView) convertView.findViewById(R.id.list_item_task_result_right_answer_tv)).setText(task.getRightAnswer());
+        TextView Right_Answer_TV = (TextView) convertView.findViewById(R.id.list_item_task_result_right_answer_tv);
+        Right_Answer_TV.setFocusable(true);
+        Right_Answer_TV.setOnClickListener(v -> ((TextView)v).setText(task.getRightAnswer()));
         ((TextView) convertView.findViewById(R.id.list_item_task_result_title_tv)).setText("Задание "+position);
         boolean is_answer_right = task.CheckAnswer();
         TextView Is_Answer_Right_TV = (TextView) convertView.findViewById(R.id.list_item_task_result_is_answer_right_tv);

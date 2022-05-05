@@ -156,6 +156,18 @@ public class DatabaseManager {
         return result;
     }
 
+    public void invalidateGragesData(){
+        for(Grade g:getAllGrades()){
+            int completed=0;
+            for(Topic t:getAllTopics(g.getNumber())){
+                if(t.getProgress()>0.9f){
+                    completed++;
+                }
+            }
+            updateGrade(new Grade(g.getNumber(),completed,g.getTopic_count()));
+        }
+    }
+
     public void deleteAllTopics(){
         database.delete(TOPIC_TABLE_NAME, null, null);
     }

@@ -1,4 +1,4 @@
-package ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters;
+package ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

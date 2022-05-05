@@ -19,9 +19,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ru.myitschool.vsu2021.markyachnyj.the_project.Database.DatabaseManager;
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.fragments.TopicProgressInfoFragment;
-import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.ArrayAdapters.TopicAdapter;
+import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Adapters.TopicAdapter;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Test;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
@@ -38,7 +39,8 @@ public class TopicChoiceActivity extends AppCompatActivity {
 
     private Grade grade;
 
-    private GithubResourceManager manager;
+    private GithubResourceManager githubManager;
+    private DatabaseManager databaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,8 @@ public class TopicChoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_topic_choice);
         Back_Button = findViewById(R.id.activity_topic_choice_back_btn);
         list = (ListView) findViewById(R.id.activity_topic_choice_list);
-        manager = new GithubResourceManager();
+        githubManager = new GithubResourceManager();
+        databaseManager  =new DatabaseManager(this);
         data = (ArrayList<Topic>) getIntent().getSerializableExtra("topic_list");
         Grade_TV = (TextView) findViewById(R.id.activity_topic_choice_grade_tv);
         Screen_FL = (FrameLayout) findViewById(R.id.activity_topic_choice_screen_fl);
@@ -58,13 +61,48 @@ public class TopicChoiceActivity extends AppCompatActivity {
         Grade_TV.setText(grade.getNumber()+" класс");
     }
 
-    private View.OnClickListener Back_Btn_Listener = v -> finish();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try{
+            Screen_FL.removeViewAt(4);
+        } catch (Exception e){
+
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Back_Button.callOnClick();
+    }
+
+    private View.OnClickListener Back_Btn_Listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AsyncTask<Void,Void,ArrayList<Grade>> task = new AsyncTask<Void, Void, ArrayList<Grade>>() {
+                @Override
+                protected ArrayList<Grade> doInBackground(Void... voids) {
+                    return databaseManager.getAllGrades();
+                }
+
+                @Override
+                protected void onPostExecute(ArrayList<Grade> arrayList) {
+                    super.onPostExecute(arrayList);
+                    Intent i = new Intent(TopicChoiceActivity.this,GradeChoiceActivity.class);
+                    i.putExtra("grade_list",arrayList);
+                    startActivity(i);
+                }
+            };
+            task.execute();
+        }
+    };
 
     private AdapterView.OnItemClickListener ItemListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             OpenFragment((Topic) adapter.getItem(position));
         }
+
     };
 
     private void OpenFragment(Topic topic){
@@ -95,14 +133,14 @@ public class TopicChoiceActivity extends AppCompatActivity {
         textView.setLayoutParams(params);
         frameLayout.addView(textView);
         (new LoadTestAndStartTestSolverActivityTask()).execute(topic);
-
     }
 
     private class LoadTestAndStartTestSolverActivityTask extends AsyncTask<Topic, Void, Test>{
+
         @Override
         protected Test doInBackground(Topic... topics) {
             Topic t = topics[0];
-            return manager.BuildTest(t);
+            return githubManager.BuildTest(t);
         }
 
         @Override

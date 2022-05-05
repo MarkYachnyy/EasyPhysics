@@ -42,7 +42,11 @@ public class Test implements Serializable {
                 done++;
             }
         }
-        return (1f*done/all);
+        float f = 1f*done/all;
+        String s = String.format("%.2f",f);
+        s  =s.replace(',','.');
+        float result = (Float.parseFloat(s));
+        return result;
     }
 
 }

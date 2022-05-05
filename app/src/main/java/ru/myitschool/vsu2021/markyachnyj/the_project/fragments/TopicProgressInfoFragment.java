@@ -71,18 +71,16 @@ public class TopicProgressInfoFragment extends Fragment {
         ft.commit();
     }
 
-    private View.OnClickListener Read_Theory_Btn_Listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            LoadTheoryTask task = new LoadTheoryTask();
-            task.execute();
-        }
+    private View.OnClickListener Read_Theory_Btn_Listener = v -> {
+        LoadTheoryTask task = new LoadTheoryTask();
+        task.execute();
     };
 
     private View.OnClickListener Start_Test_Btn_Listener =new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             ((TopicChoiceActivity) getActivity()).StartTestActivity(topic);
+            CloseFragment();
         }
     };
 
@@ -105,6 +103,7 @@ public class TopicProgressInfoFragment extends Fragment {
             Intent i = new Intent(getActivity(), TheoryReaderActivity.class);
             i.putExtra("theory",s);
             startActivity(i);
+            CloseFragment();
         }
     }
 }
