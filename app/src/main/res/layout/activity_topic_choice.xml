@@ -34,11 +34,14 @@
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:text="n класс"/>
-            <View
+            <ImageButton
+                android:id="@+id/activity_topic_choice.info_btn"
                 android:layout_width="0sp"
                 android:layout_marginRight="5sp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/ic_baseline_info_45"/>
         </LinearLayout>
         <ListView
             android:id="@+id/activity_topic_choice.list"

@@ -16,6 +16,25 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             android:background="@color/light_blue">
+            <View
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="Список Классов"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="25sp"/>
+            <ImageButton
+                android:id="@+id/activity_grade_choice.settings_btn"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_baseline_settings_45"
+                android:backgroundTint="@color/transparent"/>
         </LinearLayout>
         <ListView
             android:id="@+id/activity_grade_choice.list"

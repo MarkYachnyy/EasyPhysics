@@ -28,6 +28,7 @@ public class TestResultActivity extends AppCompatActivity {
 
     private TextView Title_TV;
     private ListView ListView;
+    private TextView Progress_TV;
     private BasicProgressBarView ProgressBar;
     private Button Close_Btn;
 
@@ -43,34 +44,34 @@ public class TestResultActivity extends AppCompatActivity {
         Title_TV = (TextView) findViewById(R.id.activity_test_result_title_tv);
         ListView = (ListView) findViewById(R.id.activity_test_result_list);
         ProgressBar = (BasicProgressBarView) findViewById(R.id.activity_test_result_progress_bar);
+        Progress_TV = (TextView) findViewById(R.id.activity_test_result_progress_tv);
         Close_Btn = (Button) findViewById(R.id.activity_test_result_close_btn);
         test = (Test) getIntent().getSerializableExtra("test");
         adapter = new TestResultAdapter(this,test);
         Title_TV.setText("Тест по теме\""+test.getTopic().getName()+"\" завершён");
         ListView.setAdapter(adapter);
         ProgressBar.setProgress(test.getProgress());
+        Progress_TV.setText((Progress_TV.getText().toString()).replace("N",""+(int)(test.getProgress()*100)));
         Close_Btn.setOnClickListener(Close_Btn_Listener);
         manager = new DatabaseManager(this);
     }
 
     private View.OnClickListener Close_Btn_Listener = v -> (new AsTask()).execute();
 
-    private class AsTask extends AsyncTask<Void, Void, ArrayList<Topic>>{
+    private class AsTask extends AsyncTask<Void, Void, Void>{
 
         @Override
-        protected ArrayList<Topic> doInBackground(Void... voids) {
+        protected Void doInBackground(Void... voids) {
             Topic topic = new Topic(test.getTopic().getGrade_number(), test.getTopic().getName(), test.getProgress());
             manager.updateTopic(topic);
             manager.invalidateGragesData();
-            return manager.getAllTopics(test.getTopic().getGrade_number());
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Topic> topics) {
-            super.onPostExecute(topics);
-            Intent i = new Intent(TestResultActivity.this, TopicChoiceActivity.class);
-            i.putExtra("topic_list",topics);
-            startActivity(i);
+        protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
+            finish();
         }
 
     }

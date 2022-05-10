@@ -45,6 +45,7 @@ public class TestSolverActivity extends AppCompatActivity {
     private HashMap<Button, TaskFragment> fragment_map;
     private ArrayList<Button> task_buttons;
     private int current_task_id=0;
+    private boolean is_finished=false;
 
     private LinearLayout Task_Buttons_LL;
     private TextView Topic_Name_TV;
@@ -115,6 +116,14 @@ public class TestSolverActivity extends AppCompatActivity {
     public void GiveAnswer(Task task, boolean value){
         test.giveAnswer(task, value);
         InvalidateTaskButtons();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(is_finished){
+            finish();
+        }
     }
 
     private Comparator<Button> task_button_cmp = new Comparator<Button>() {
@@ -209,6 +218,7 @@ public class TestSolverActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
         ((Button)view.findViewById(R.id.alert_dialog_finish_test_negative_btn)).setOnClickListener(v -> dialog.dismiss());
         ((Button)view.findViewById(R.id.alert_dialog_finish_test_positive_btn)).setOnClickListener(v -> {
+            is_finished=true;
             Intent i = new Intent(getApplicationContext(),TestResultActivity.class);
             i.putExtra("test",test);
             startActivity(i);

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/alert_dialog_formula_constructor_task_info.dialog_holder"
+    android:background="@color/transparent">
+    <LinearLayout
+        android:id="@+id/alert_dialog_formula_constructor_task_info.main_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/alert_dialog_bg"
+        android:gravity="center_horizontal">
+        <TextView
+            android:padding="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Чтобы расположить элемент в ячейке, нажмите сначала на элемент, а потом на ячейку. Чтобы убрать элемент из  ячейки, нажмите на ячейку с элементом"/>
+        <Button
+            android:id="@+id/alert_dialog_formula_constructor_task_info.ok_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_green"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="ок"/>
+    </LinearLayout>
+</FrameLayout>

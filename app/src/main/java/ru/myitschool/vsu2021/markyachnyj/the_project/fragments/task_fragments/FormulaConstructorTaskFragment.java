@@ -1,18 +1,22 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.fragments.task_fragments;
 
-import android.graphics.drawable.GradientDrawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.VideoView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
 
@@ -20,7 +24,7 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TestSolverActivity;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.FormulaComponentPlaceholderView;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.FormulaComponentView;
-import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Test;
+import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.FractionDividerView;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.FormulaConstructorTask;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.tasks.Task;
 
@@ -32,6 +36,8 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
     private LinearLayout Numerator_LL;
     private LinearLayout Denominator_LL;
     private LinearLayout Components_LL;
+    private FrameLayout Fraction_FL;
+    private ImageButton Info_Btn;
 
     private FormulaComponentView Chosen_View=null;
 
@@ -54,11 +60,14 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
         View view = inflater.inflate(R.layout.fragment_formula_constructor_task, container, false);
         Exercise_TV = (TextView) view.findViewById(R.id.fragment_formula_constructor_task_exercise_tv);
         Fraction_LL = (LinearLayout) view.findViewById(R.id.fragment_formula_constructor_task_fraction_ll);
+        Fraction_FL = (FrameLayout) view.findViewById(R.id.fragment_formula_constructor_task_fraction_fl);
         Numerator_LL = (LinearLayout) view.findViewById(R.id.fragment_formula_constructor_task_numerator_ll);
         Components_LL = (LinearLayout) view.findViewById(R.id.fragment_formula_constructor_task_components_ll);
         Value_Symbol_TV = (TextView) view.findViewById(R.id.fragment_formula_constructor_task_value_symbol_tv);
+        Info_Btn = (ImageButton) view.findViewById(R.id.fragment_formula_constructor_task_info_btn);
         Exercise_TV.setText(task.getExercise());
         Value_Symbol_TV.setText(task.getFormula().getValue_symbol());
+        Info_Btn.setOnClickListener(Info_Btn_Listener);
         PlaceComponentPlaceholders();
         PlaceComponentViews();
         return view;
@@ -74,6 +83,7 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
             fl.addView(new FormulaComponentPlaceholderView(getActivity()));
         }
         if(!(task.getFormula().getDenominator().length==0)){
+            Fraction_FL.addView(new FractionDividerView(getActivity()),0);
             Denominator_LL = new LinearLayout(getActivity());
             LinearLayout.LayoutParams params =new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,0,1);
             Denominator_LL.setLayoutParams(params);
@@ -136,6 +146,33 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
                 Chosen_View = null;
             }
             SetTaskAnswer();
+        }
+    };
+
+    private View.OnClickListener Info_Btn_Listener =new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AlertDialog.Builder builder= new AlertDialog.Builder(getActivity());
+            View view = (LayoutInflater.from(getActivity())).inflate(R.layout.alert_dialog_formula_constructor_task_info,null);
+            builder.setView(view);
+            VideoView videoView = new VideoView(getActivity());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(600,600);
+            params.setMargins(0,5,0,5);
+            videoView.setLayoutParams(params);
+            ((LinearLayout)view.findViewById(R.id.alert_dialog_formula_constructor_task_info_main_ll)).addView(videoView,1);
+            videoView.setMediaController(null);
+            videoView.setVideoURI(Uri.parse("android.resource://" + getActivity().getPackageName() +"/"+R.raw.formula_constructor_task_info_video));
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mp.setLooping(true);
+                }
+            });
+            videoView.start();
+            AlertDialog dialog = builder.create();
+            dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+            ((Button)view.findViewById(R.id.alert_dialog_formula_constructor_task_info_ok_btn)).setOnClickListener(v1 -> dialog.dismiss());
+            dialog.show();
         }
     };
 

@@ -1,12 +1,15 @@
 package ru.myitschool.vsu2021.markyachnyj.the_project.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -14,6 +17,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +40,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
     private Button Back_Button;
     private TextView Grade_TV;
     private FrameLayout Screen_FL;
+    private ImageButton Info_Btn;
 
     private Grade grade;
 
@@ -54,16 +59,19 @@ public class TopicChoiceActivity extends AppCompatActivity {
         Grade_TV = (TextView) findViewById(R.id.activity_topic_choice_grade_tv);
         Screen_FL = (FrameLayout) findViewById(R.id.activity_topic_choice_screen_fl);
         grade = (Grade) getIntent().getSerializableExtra("grade");
+        Info_Btn = (ImageButton) findViewById(R.id.activity_topic_choice_info_btn);
         adapter = new TopicAdapter(getApplicationContext(),data);
         list.setAdapter(adapter);
         list.setOnItemClickListener(ItemListener);
         Back_Button.setOnClickListener(Back_Btn_Listener);
         Grade_TV.setText(grade.getNumber()+" класс");
+        Info_Btn.setOnClickListener(Info_Btn_Listener);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        (new UpdateTopicListTask()).execute();
         try{
             Screen_FL.removeViewAt(4);
         } catch (Exception e){
@@ -71,31 +79,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        Back_Button.callOnClick();
-    }
-
-    private View.OnClickListener Back_Btn_Listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            AsyncTask<Void,Void,ArrayList<Grade>> task = new AsyncTask<Void, Void, ArrayList<Grade>>() {
-                @Override
-                protected ArrayList<Grade> doInBackground(Void... voids) {
-                    return databaseManager.getAllGrades();
-                }
-
-                @Override
-                protected void onPostExecute(ArrayList<Grade> arrayList) {
-                    super.onPostExecute(arrayList);
-                    Intent i = new Intent(TopicChoiceActivity.this,GradeChoiceActivity.class);
-                    i.putExtra("grade_list",arrayList);
-                    startActivity(i);
-                }
-            };
-            task.execute();
-        }
-    };
+    private View.OnClickListener Back_Btn_Listener = v -> finish();
 
     private AdapterView.OnItemClickListener ItemListener = new AdapterView.OnItemClickListener() {
         @Override
@@ -135,6 +119,21 @@ public class TopicChoiceActivity extends AppCompatActivity {
         (new LoadTestAndStartTestSolverActivityTask()).execute(topic);
     }
 
+    private class UpdateTopicListTask extends AsyncTask<Void,Void,ArrayList<Topic>>{
+
+        @Override
+        protected ArrayList<Topic> doInBackground(Void... voids) {
+            databaseManager = new DatabaseManager(getApplicationContext());
+            return databaseManager.getAllTopics(grade.getNumber());
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Topic> topics) {
+            super.onPostExecute(topics);
+            adapter.setNewData(topics);
+        }
+    }
+
     private class LoadTestAndStartTestSolverActivityTask extends AsyncTask<Topic, Void, Test>{
 
         @Override
@@ -151,4 +150,17 @@ public class TopicChoiceActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    private View.OnClickListener Info_Btn_Listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(TopicChoiceActivity.this);
+            View view =(LayoutInflater.from(TopicChoiceActivity.this)).inflate(R.layout.alert_dialog_topic_choice_info,(FrameLayout)findViewById(R.id.alert_dialog_topic_choice_info_dialog_holder));
+            builder.setView(view);
+            AlertDialog dialog = builder.create();
+            dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+            ((Button)view.findViewById(R.id.alert_dialog_topic_choice_info_ok_btn)).setOnClickListener(v1 -> dialog.dismiss());
+            dialog.show();
+        }
+    };
 }

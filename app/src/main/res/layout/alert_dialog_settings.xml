@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/alert_dialog_settings.dialog_holder"
+    android:background="@color/transparent">
+    <LinearLayout
+        android:id="@+id/alert_dialog_formula_constructor_task_info.main_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/alert_dialog_bg"
+        android:gravity="center_horizontal">
+        <TextView
+            android:padding="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Настройки"/>
+        <Button
+            android:id="@+id/alert_dialog_settings.developer_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="разработчик"
+            android:textSize="15sp"
+            android:backgroundTint="@color/dark_blue_pastel"
+            android:drawableLeft="@drawable/vk_logo"/>
+
+        <Button
+            android:id="@+id/alert_dialog_settings.app_info_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="информация о приложении"
+            android:textSize="15sp"
+            android:backgroundTint="@color/dark_blue_pastel"/>
+        <Button
+            android:id="@+id/alert_dialog_settings.reset_database_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="сбросить базу данных"
+            android:textSize="15sp"
+            android:backgroundTint="@color/dark_blue_pastel"/>
+        <Button
+            android:id="@+id/alert_dialog_setings.close_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="закрыть"
+            android:drawableLeft="@drawable/ic_baseline_close_30"/>
+    </LinearLayout>
+</FrameLayout>

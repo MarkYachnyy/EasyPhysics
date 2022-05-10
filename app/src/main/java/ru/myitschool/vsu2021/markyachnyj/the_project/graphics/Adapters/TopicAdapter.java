@@ -55,7 +55,7 @@ public class TopicAdapter extends BaseAdapter {
             Progress_TV.setText("Лучший прогресс по тесту: "+(int)(topic.getProgress()*100)+" %");
             if(topic.getProgress()==0){
                 Progress_TV.setTextColor(view.getResources().getColor(R.color.light_gray));
-            } else if(topic.getProgress()==1){
+            } else if(topic.getProgress()>=0.9f){
                 Progress_TV.setTextColor(view.getResources().getColor(R.color.light_green_pastel));
             } else {
                 Progress_TV.setTextColor(view.getResources().getColor(R.color.white));

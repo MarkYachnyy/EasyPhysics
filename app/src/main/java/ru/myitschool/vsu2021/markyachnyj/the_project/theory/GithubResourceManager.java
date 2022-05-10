@@ -129,7 +129,7 @@ public class GithubResourceManager {
         ArrayList<String> denominator = new ArrayList<>(Arrays.asList(formula.getDenominator()));
         while(extra_components.size()<2){
             String s = (String) getRandom(all_components,1).get(0);
-            if((!extra_components.contains(s))&&(!numerator.contains(s))&&(!denominator.contains(s))&&(!extra_components.contains(s.toLowerCase()))&&(!numerator.contains(s.toLowerCase()))&&(!denominator.contains(s.toLowerCase()))){
+            if((!extra_components.contains(s))&&(!numerator.contains(s))&&(!denominator.contains(s))&&(!extra_components.contains(s.toLowerCase()))&&(!numerator.contains(s.toLowerCase()))&&(!denominator.contains(s.toUpperCase()))&&(!extra_components.contains(s.toUpperCase()))&&(!numerator.contains(s.toLowerCase()))&&(!denominator.contains(s.toUpperCase()))){
                 extra_components.add(s);
             }
         }
