@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/alert_dialog_app_info.dialog_holder"
+    android:background="@color/transparent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/alert_dialog_bg"
+        android:gravity="center_horizontal">
+        <TextView
+            android:padding="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="EasyPhysics v1.0"/>
+        <TextView
+            android:padding="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Благодаря приложению школьники могут быстро пройти или освежить материал по той или иной теме, а затем закрепить его, пройдя тест, проверяющий знание формул, единиц измерения и умение решать задачи"/>
+        <Button
+            android:id="@+id/alert_dialog_app_info.ok_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_green"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="ок"/>
+    </LinearLayout>
+</FrameLayout>

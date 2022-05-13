@@ -29,8 +29,9 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Grade;
 
 public class GradeChoiceActivity extends AppCompatActivity {
 
-    private ListView listView;
+    private ListView LV;
     private GradeAdapter adapter;
+    private DatabaseManager manager;
 
     private ImageButton Settings_Btn;
 
@@ -38,10 +39,10 @@ public class GradeChoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_choice);
-        listView = (ListView) findViewById(R.id.activity_grade_choice_list);
-        adapter = new GradeAdapter(getApplicationContext(), (ArrayList<Grade>) getIntent().getSerializableExtra("grade_list"));
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(ItemListener);
+        LV = (ListView) findViewById(R.id.activity_grade_choice_list);
+        adapter = new GradeAdapter(this, new ArrayList<>());
+        LV.setAdapter(adapter);
+        LV.setOnItemClickListener(ItemListener);
         Settings_Btn = (ImageButton) findViewById(R.id.activity_grade_choice_settings_btn);
         Settings_Btn.setOnClickListener(Settings_Btn_Listener);
     }
@@ -49,6 +50,12 @@ public class GradeChoiceActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         ShowExitAlertDialog();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        (new UpdateGradeListTask()).execute();
     }
 
     private AdapterView.OnItemClickListener ItemListener = new AdapterView.OnItemClickListener() {
@@ -84,6 +91,7 @@ public class GradeChoiceActivity extends AppCompatActivity {
             (new ResetDBTask()).execute();
             return false;
         });
+        ((Button) view.findViewById(R.id.alert_dialog_settings_app_info_btn)).setOnClickListener(v -> ShowAppInfoAlertDialog());
         builder.setView(view);
         AlertDialog dialog = builder.create();
         dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
@@ -115,6 +123,32 @@ public class GradeChoiceActivity extends AppCompatActivity {
         }
     }
 
+    private class UpdateGradeListTask extends AsyncTask<Void,Void,ArrayList<Grade>>{
+
+        @Override
+        protected ArrayList<Grade> doInBackground(Void... voids) {
+            manager = new DatabaseManager(getApplicationContext());
+            return manager.getAllGrades();
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Grade> grades) {
+            super.onPostExecute(grades);
+            adapter.setNewData(grades);
+            LV.invalidate();
+        }
+    }
+
+    private void ShowAppInfoAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = (LayoutInflater.from(this)).inflate(R.layout.alert_dialog_app_info,(FrameLayout)findViewById(R.id.alert_dialog_app_info_dialog_holder));
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        ((Button)view.findViewById(R.id.alert_dialog_app_info_ok_btn)).setOnClickListener(v -> dialog.dismiss());
+        dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+        dialog.show();
+    }
+
     private void ShowExitAlertDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = (LayoutInflater.from(this)).inflate(R.layout.alert_dialog_exit_app,(FrameLayout)findViewById(R.id.alert_dialog_exit_app_dialog_holder));
@@ -128,6 +162,7 @@ public class GradeChoiceActivity extends AppCompatActivity {
         AlertDialog dialog  =builder.create();
         dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
         ((Button) view.findViewById(R.id.alert_dialog_exit_app_positive_btn)).setOnClickListener(v -> dialog.dismiss());
+        ((Button) view.findViewById(R.id.alert_dialog_settings_app_info_btn)).setOnClickListener(v -> ShowAppInfoAlertDialog());
         dialog.show();
     }
 

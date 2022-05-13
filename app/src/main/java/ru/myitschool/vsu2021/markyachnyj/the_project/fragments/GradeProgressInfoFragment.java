@@ -57,7 +57,10 @@ public class GradeProgressInfoFragment extends Fragment {
     private View.OnClickListener Continue_Btn_Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            (new LoadTopicListAndStartGradeChoiceActivity()).execute();
+            Intent i = new Intent(getActivity(), TopicChoiceActivity.class);
+            i.putExtra("grade",grade);
+            startActivity(i);
+            CloseFragment();
         }
     };
 
@@ -74,22 +77,5 @@ public class GradeProgressInfoFragment extends Fragment {
         transaction.commit();
     }
 
-    private class LoadTopicListAndStartGradeChoiceActivity extends AsyncTask<Void, Void, ArrayList<Topic>>{
-
-        @Override
-        protected ArrayList<Topic> doInBackground(Void... voids) {
-            return manager.getAllTopics(grade.getNumber());
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Topic> topics) {
-            super.onPostExecute(topics);
-            Intent i = new Intent(getActivity(), TopicChoiceActivity.class);
-            i.putExtra("topic_list",topics);
-            i.putExtra("grade",grade);
-            startActivity(i);
-            CloseFragment();
-        }
-    }
 
 }

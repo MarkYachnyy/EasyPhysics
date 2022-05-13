@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +34,7 @@ import ru.myitschool.vsu2021.markyachnyj.the_project.theory.GithubResourceManage
 public class TopicChoiceActivity extends AppCompatActivity {
 
     private TopicAdapter adapter;
-    private ArrayList<Topic> data;
-    private ListView list;
+    private ListView LV;
     private Button Back_Button;
     private TextView Grade_TV;
     private FrameLayout Screen_FL;
@@ -52,17 +50,16 @@ public class TopicChoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_choice);
         Back_Button = findViewById(R.id.activity_topic_choice_back_btn);
-        list = (ListView) findViewById(R.id.activity_topic_choice_list);
+        LV = (ListView) findViewById(R.id.activity_topic_choice_list);
         githubManager = new GithubResourceManager();
         databaseManager  =new DatabaseManager(this);
-        data = (ArrayList<Topic>) getIntent().getSerializableExtra("topic_list");
         Grade_TV = (TextView) findViewById(R.id.activity_topic_choice_grade_tv);
         Screen_FL = (FrameLayout) findViewById(R.id.activity_topic_choice_screen_fl);
         grade = (Grade) getIntent().getSerializableExtra("grade");
         Info_Btn = (ImageButton) findViewById(R.id.activity_topic_choice_info_btn);
-        adapter = new TopicAdapter(getApplicationContext(),data);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(ItemListener);
+        adapter = new TopicAdapter(getApplicationContext(),new ArrayList<>());
+        LV.setAdapter(adapter);
+        LV.setOnItemClickListener(ItemListener);
         Back_Button.setOnClickListener(Back_Btn_Listener);
         Grade_TV.setText(grade.getNumber()+" класс");
         Info_Btn.setOnClickListener(Info_Btn_Listener);
@@ -103,6 +100,11 @@ public class TopicChoiceActivity extends AppCompatActivity {
     }
 
     public void StartTestActivity(Topic topic){
+        ShowWaitingFrameLayout();
+        (new LoadTestAndStartTestSolverActivityTask()).execute(topic);
+    }
+
+    public void ShowWaitingFrameLayout(){
         FrameLayout frameLayout = new FrameLayout(this);
         frameLayout.setBackgroundColor(getResources().getColor(R.color.main_bg_green));
         frameLayout.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -116,7 +118,6 @@ public class TopicChoiceActivity extends AppCompatActivity {
         params.gravity = Gravity.CENTER;
         textView.setLayoutParams(params);
         frameLayout.addView(textView);
-        (new LoadTestAndStartTestSolverActivityTask()).execute(topic);
     }
 
     private class UpdateTopicListTask extends AsyncTask<Void,Void,ArrayList<Topic>>{
@@ -131,6 +132,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
         protected void onPostExecute(ArrayList<Topic> topics) {
             super.onPostExecute(topics);
             adapter.setNewData(topics);
+            LV.invalidate();
         }
     }
 

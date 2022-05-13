@@ -47,19 +47,17 @@ public class GradeAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(!data.isEmpty()){
             Grade grade = data.get(position);
-            if(convertView==null){
-                convertView = inflater.inflate(R.layout.list_item_grade_topic, null);
-                ((GradeTopicListItemBGView)convertView.findViewById(R.id.grade_topic_list_item_bg)).setProgress(grade.getProgress());
-                ((TextView)convertView.findViewById(R.id.grade_topic_list_item_name_tv)).setText(grade.getNumber()+" Класс");
-                TextView Progress_TV = convertView.findViewById(R.id.grade_topic_list_item_progress_tv);
-                Progress_TV.setText("Пройдено "+grade.getTopic_completed()+" тем из "+grade.getTopic_count());
-                if(grade.getTopic_completed()==0){
-                    Progress_TV.setTextColor(view.getResources().getColor(R.color.light_gray));
-                } else if(grade.getTopic_completed()==grade.getTopic_count()){
-                    Progress_TV.setTextColor(view.getResources().getColor(R.color.light_green_pastel));
-                } else {
-                    Progress_TV.setTextColor(view.getResources().getColor(R.color.white));
-                }
+            convertView = inflater.inflate(R.layout.list_item_grade_topic, null);
+            ((GradeTopicListItemBGView)convertView.findViewById(R.id.grade_topic_list_item_bg)).setProgress(grade.getProgress());
+            ((TextView)convertView.findViewById(R.id.grade_topic_list_item_name_tv)).setText(grade.getNumber()+" Класс");
+            TextView Progress_TV = convertView.findViewById(R.id.grade_topic_list_item_progress_tv);
+            Progress_TV.setText("Пройдено "+grade.getTopic_completed()+" тем из "+grade.getTopic_count());
+            if(grade.getTopic_completed()==0){
+                Progress_TV.setTextColor(view.getResources().getColor(R.color.light_gray));
+            } else if(grade.getTopic_completed()==grade.getTopic_count()){
+                Progress_TV.setTextColor(view.getResources().getColor(R.color.light_green_pastel));
+            } else {
+                Progress_TV.setTextColor(view.getResources().getColor(R.color.white));
             }
         }
         return convertView;

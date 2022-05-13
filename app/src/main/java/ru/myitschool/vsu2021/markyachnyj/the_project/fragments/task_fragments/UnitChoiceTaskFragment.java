@@ -2,8 +2,6 @@ package ru.myitschool.vsu2021.markyachnyj.the_project.fragments.task_fragments;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +18,8 @@ public class UnitChoiceTaskFragment extends TaskFragment {
 
     private TextView Exercise_TV;
     private RadioGroup Answers_RG;
+    private TextView Saved_Answer_TV;
+
     private UnitChoiceTask task;
 
     public UnitChoiceTaskFragment(UnitChoiceTask task){
@@ -34,6 +34,7 @@ public class UnitChoiceTaskFragment extends TaskFragment {
         Exercise_TV  = (TextView) view.findViewById(R.id.fragment_unit_choice_task_exercise_tv);
         Answers_RG = (RadioGroup) view.findViewById(R.id.fragment_unit_choice_task_answers_rg);
         Exercise_TV = (TextView) view.findViewById(R.id.fragment_unit_choice_task_exercise_tv);
+        Saved_Answer_TV = (TextView) view.findViewById(R.id.fragment_unit_choice_task_saved_answer_tv);
         Exercise_TV.setText(task.getExercise());
         for(String s:task.getAllAnswers()){
             RadioButton rb =new RadioButton(getActivity());
@@ -49,10 +50,17 @@ public class UnitChoiceTaskFragment extends TaskFragment {
             rb.setOnClickListener(v -> {
                 task.setChosen_answer(((RadioButton)v).getText().toString());
                 ((TestSolverActivity)getActivity()).GiveAnswer(task, true);
+                (Saved_Answer_TV).setText("Сохранено: "+((RadioButton)v).getText().toString());
             });
         }
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Saved_Answer_TV.setText("Сохранено: "+task.getChosen_answer());
     }
 
     @Override

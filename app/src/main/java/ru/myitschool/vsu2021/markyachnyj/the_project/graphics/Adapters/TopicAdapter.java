@@ -32,10 +32,7 @@ public class TopicAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        if(!data.isEmpty()) {
-            return data.get(position);
-        }
-        return null;
+        return data.get(position);
     }
 
     @Override
@@ -46,7 +43,6 @@ public class TopicAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Topic topic = data.get(position);
-        if(convertView==null){
             convertView = inflater.inflate(R.layout.list_item_grade_topic,null);
             ((GradeTopicListItemBGView)convertView.findViewById(R.id.grade_topic_list_item_bg)).setProgress(topic.getProgress());
             ((TextView)convertView.findViewById(R.id.grade_topic_list_item_name_tv)).setText(topic.getName());
@@ -60,12 +56,12 @@ public class TopicAdapter extends BaseAdapter {
             } else {
                 Progress_TV.setTextColor(view.getResources().getColor(R.color.white));
             }
-        }
         return convertView;
     }
 
     public void setNewData(ArrayList<Topic> data) {
         this.data = data;
         notifyDataSetChanged();
+        notifyDataSetInvalidated();
     }
 }

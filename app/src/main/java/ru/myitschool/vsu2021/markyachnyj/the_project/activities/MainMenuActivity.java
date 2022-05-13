@@ -79,24 +79,11 @@ public class MainMenuActivity extends AppCompatActivity {
         protected void onPostExecute(Void v) {
             super.onPostExecute(v);
             Loading_Info_TV.setText("Загрузка данных...");
-            (new LoadGradeListAndStartActivityTask()).execute();
-        }
-    }
-    private class LoadGradeListAndStartActivityTask extends AsyncTask<Void, Void, ArrayList<Grade>>{
-        @Override
-        protected ArrayList<Grade> doInBackground(Void... voids) {
-            ArrayList<Grade> result = databaseManager.getAllGrades();
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Grade> a) {
-            super.onPostExecute(a);
             Intent i = new Intent(MainMenuActivity.this, GradeChoiceActivity.class);
-            i.putExtra("grade_list",a);
             startActivity(i);
         }
     }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();

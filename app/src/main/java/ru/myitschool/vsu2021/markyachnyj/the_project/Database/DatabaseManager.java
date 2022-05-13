@@ -168,6 +168,15 @@ public class DatabaseManager {
         }
     }
 
+    public float getProgress(String topic_name){
+        for(Topic t:getAllTopics()){
+            if(t.getName().equals(topic_name)){
+                return t.getProgress();
+            }
+        }
+        return 0f;
+    }
+
     public void deleteAllTopics(){
         database.delete(TOPIC_TABLE_NAME, null, null);
     }

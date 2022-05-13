@@ -38,6 +38,7 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
     private LinearLayout Components_LL;
     private FrameLayout Fraction_FL;
     private ImageButton Info_Btn;
+    private TextView Saved_Answer_TV;
 
     private FormulaComponentView Chosen_View=null;
 
@@ -65,6 +66,7 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
         Components_LL = (LinearLayout) view.findViewById(R.id.fragment_formula_constructor_task_components_ll);
         Value_Symbol_TV = (TextView) view.findViewById(R.id.fragment_formula_constructor_task_value_symbol_tv);
         Info_Btn = (ImageButton) view.findViewById(R.id.fragment_formula_constructor_task_info_btn);
+        Saved_Answer_TV = (TextView) view.findViewById(R.id.fragment_formula_constructor_task_saved_answer_tv);
         Exercise_TV.setText(task.getExercise());
         Value_Symbol_TV.setText(task.getFormula().getValue_symbol());
         Info_Btn.setOnClickListener(Info_Btn_Listener);
@@ -202,6 +204,13 @@ public class FormulaConstructorTaskFragment extends TaskFragment {
         task.setNumerator(new_numerator);
         task.setDenominator(new_denominator);
         ((TestSolverActivity)getActivity()).GiveAnswer(task, flag);
+        Saved_Answer_TV.setText("Сохранено: "+task.getGivenAnswer());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Saved_Answer_TV.setText("Сохранено: "+task.getGivenAnswer());
     }
 
     @Override

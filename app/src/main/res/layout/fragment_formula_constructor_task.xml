@@ -80,6 +80,17 @@
             android:gravity="center">
 
         </LinearLayout>
+        <TextView
+            android:id="@+id/fragment_formula_constructor_task.saved_answer_tv"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="0.6"
+            android:layout_margin="5sp"
+            android:background="@color/dark_blue_pastel"
+            android:text="Сохранено: / "
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/white"/>
     </LinearLayout>
     <ImageButton
         android:id="@+id/fragment_formula_constructor_task.info_btn"

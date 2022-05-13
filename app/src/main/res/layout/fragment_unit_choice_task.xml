@@ -22,5 +22,16 @@
         android:layout_height="0sp"
         android:layout_weight="3"
         android:orientation="vertical"/>
+    <TextView
+        android:id="@+id/fragment_unit_choice_task.saved_answer_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:background="@color/dark_blue_pastel"
+        android:layout_margin="20px"
+        android:text = "Сохранено: -"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"/>
 
 </LinearLayout>

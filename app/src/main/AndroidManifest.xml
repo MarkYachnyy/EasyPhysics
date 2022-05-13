@@ -13,7 +13,8 @@
         android:theme="@style/Theme.The_Project">
         <activity
             android:name=".activities.TestResultActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.TestSolverActivity"
             android:exported="false"

@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TestSolverActivity;
 import ru.myitschool.vsu2021.markyachnyj.the_project.activities.TheoryReaderActivity;
@@ -55,6 +57,9 @@ public class TopicProgressInfoFragment extends Fragment {
         ((TextView)view.findViewById(R.id.fragment_topic_progress_info_name_tv)).setText(topic.getName());
         ((TextView)view.findViewById(R.id.fragment_topic_progress_info_progress_tv)).setText("Лучший прогресс по тесту: "+(int)(100*topic.getProgress())+"%");
         ((RoundProgressBar)view.findViewById(R.id.fragment_topic_progress_info_progress_bar)).setProgress(topic.getProgress());
+        Gson gson = new Gson();
+        String s = "";
+        Topic topic = gson.fromJson(s, Topic.class);
         return view;
     }
 
@@ -72,6 +77,7 @@ public class TopicProgressInfoFragment extends Fragment {
     }
 
     private View.OnClickListener Read_Theory_Btn_Listener = v -> {
+        ((TopicChoiceActivity) getActivity()).ShowWaitingFrameLayout();
         LoadTheoryTask task = new LoadTheoryTask();
         task.execute();
     };

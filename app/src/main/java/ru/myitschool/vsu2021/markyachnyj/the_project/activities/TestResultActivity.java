@@ -56,15 +56,17 @@ public class TestResultActivity extends AppCompatActivity {
         manager = new DatabaseManager(this);
     }
 
-    private View.OnClickListener Close_Btn_Listener = v -> (new AsTask()).execute();
+    private View.OnClickListener Close_Btn_Listener = v -> (new FinishActivityTask()).execute();
 
-    private class AsTask extends AsyncTask<Void, Void, Void>{
+    private class FinishActivityTask extends AsyncTask<Void, Void, Void>{
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Topic topic = new Topic(test.getTopic().getGrade_number(), test.getTopic().getName(), test.getProgress());
-            manager.updateTopic(topic);
-            manager.invalidateGragesData();
+            if(manager.getProgress(test.getTopic().getName())<=test.getProgress()){
+                Topic topic = new Topic(test.getTopic().getGrade_number(), test.getTopic().getName(), test.getProgress());
+                manager.updateTopic(topic);
+                manager.invalidateGragesData();
+            }
             return null;
         }
 
