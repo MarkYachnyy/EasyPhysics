@@ -10,6 +10,7 @@
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/drawable/ic_baseline_check_30.xml" value="0.49166666666666664" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/drawable/ic_baseline_check_40.xml" value="0.49166666666666664" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.5441025641025641" />
+        <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/drawable/red_circle.xml" value="0.5615384615384615" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout-sw600dp/activity_grade_choice.xml" value="0.415625" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/activity_grade_choice.xml" value="0.5" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
@@ -25,6 +26,7 @@
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/alert_dialog_finish_test.xml" value="0.5" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/alert_dialog_formula_constructor_task_info.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/alert_dialog_settings.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/alert_dialog_table_values.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/alert_dialog_topic_choice_info.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/class_topic_choice_view.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/marky/AndroidStudioProjects/The_Project/app/src/main/res/layout/fragment_formula_constructor_task.xml" value="0.5" />

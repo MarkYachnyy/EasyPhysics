@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.task_fragments.SimpleAnswerTaskFragment"
-    android:background="@color/light_blue"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/fragment_simple_answer_task.exercise_tv"
-        android:layout_margin="5sp"
-        android:layout_width="match_parent"
-        android:layout_height="0sp"
-        android:layout_weight="6"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:background="@color/dark_blue_pastel"
-        android:text="[условие]"/>
+    tools:context=".fragments.task_fragments.SimpleAnswerTaskFragment">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0sp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/fragment_simple_answer_task.answer_et"
-            android:layout_width="0sp"
-            android:layout_weight="5"
-            android:layout_height="match_parent"
-            android:hint="ответ"
-            android:textSize="30sp"
-            android:textColor="@color/white"
+        android:layout_height="match_parent"
+        android:background="@color/light_blue"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/fragment_simple_answer_task.exercise_tv"
+            android:layout_margin="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="6"
             android:gravity="center"
-            android:imeOptions="actionDone"/>
-        <ImageButton
-            android:id="@+id/fragment_simple_answer_task.save_answer_btn"
-            android:layout_width="0sp"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:background="@color/dark_blue_pastel"
+            android:text="[условие]"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/light_green"
-            android:src="@drawable/ic_baseline_check_30"
-            android:gravity="center"/>
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/fragment_simple_answer_task.answer_et"
+                android:layout_width="0sp"
+                android:layout_weight="5"
+                android:layout_height="match_parent"
+                android:hint="ответ"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:imeOptions="actionDone"/>
+            <ImageButton
+                android:id="@+id/fragment_simple_answer_task.save_answer_btn"
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/light_green"
+                android:src="@drawable/ic_baseline_check_30"
+                android:gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/fragment_simple_answer_task.table_values_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/ic_baseline_backup_table_30"/>
+</FrameLayout>

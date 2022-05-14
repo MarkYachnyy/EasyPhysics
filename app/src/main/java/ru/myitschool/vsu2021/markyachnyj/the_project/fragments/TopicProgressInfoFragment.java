@@ -108,6 +108,7 @@ public class TopicProgressInfoFragment extends Fragment {
         protected void onPostExecute(String s) {
             Intent i = new Intent(getActivity(), TheoryReaderActivity.class);
             i.putExtra("theory",s);
+            i.putExtra("topic_name",topic.getName());
             startActivity(i);
             CloseFragment();
         }

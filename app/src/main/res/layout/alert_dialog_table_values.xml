@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/alert_dialog_table_values.dialog_holder"
+    android:background="@color/transparent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/alert_dialog_bg"
+        android:gravity="center_horizontal">
+        <TextView
+            android:padding="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Табличные значения"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="300sp"
+            android:background="@color/main_bg_green"
+            android:layout_margin="5sp">
+            <TextView
+                android:id="@+id/alert_dialog_table_values.values_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:gravity="center_horizontal"
+                android:textSize="22sp"/>
+        </ScrollView>
+        <Button
+            android:id="@+id/alert_dialog_table_values.ok_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_green"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="ок"/>
+    </LinearLayout>
+</FrameLayout>

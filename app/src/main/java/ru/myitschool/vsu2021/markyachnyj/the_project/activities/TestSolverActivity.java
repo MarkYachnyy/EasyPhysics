@@ -46,6 +46,7 @@ public class TestSolverActivity extends AppCompatActivity {
     private ArrayList<Button> task_buttons;
     private int current_task_id=0;
     private boolean is_finished=false;
+    private String TABLE_VALUES;
 
     private LinearLayout Task_Buttons_LL;
     private TextView Topic_Name_TV;
@@ -72,6 +73,7 @@ public class TestSolverActivity extends AppCompatActivity {
         Exit_Test_Btn.setOnClickListener(Exit_Test_Btn_Listener);
         /*TEST*/
         test = (Test) getIntent().getSerializableExtra("test");
+        TABLE_VALUES = getIntent().getStringExtra("table_values");
         /*TEST*/
         PlaceExerciseButtons();
         MakeExerciseFragments();
@@ -104,7 +106,7 @@ public class TestSolverActivity extends AppCompatActivity {
         for(int i=0;i<test.getTasks().size();i++){
             Task task = test.getTasks().get(i);
             if(task.getClass().equals(SimpleAnswerTask.class)){
-                fragment_map.put(task_buttons.get(i),new SimpleAnswerTaskFragment((SimpleAnswerTask)task));
+                fragment_map.put(task_buttons.get(i),new SimpleAnswerTaskFragment((SimpleAnswerTask)task,TABLE_VALUES));
             } else if(task.getClass().equals(FormulaConstructorTask.class)){
                 fragment_map.put(task_buttons.get(i),new FormulaConstructorTaskFragment((FormulaConstructorTask)task));
             } else if(task.getClass().equals(UnitChoiceTask.class)){

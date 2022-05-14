@@ -39,6 +39,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
     private TextView Grade_TV;
     private FrameLayout Screen_FL;
     private ImageButton Info_Btn;
+    private String TABLE_VALUES;
 
     private Grade grade;
 
@@ -141,6 +142,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
         @Override
         protected Test doInBackground(Topic... topics) {
             Topic t = topics[0];
+            TABLE_VALUES = githubManager.getTableValues();
             return githubManager.BuildTest(t);
         }
 
@@ -149,6 +151,7 @@ public class TopicChoiceActivity extends AppCompatActivity {
             super.onPostExecute(test);
             Intent intent =new Intent(TopicChoiceActivity.this, TestSolverActivity.class);
             intent.putExtra("test",test);
+            intent.putExtra("table_values",TABLE_VALUES);
             startActivity(intent);
         }
     }

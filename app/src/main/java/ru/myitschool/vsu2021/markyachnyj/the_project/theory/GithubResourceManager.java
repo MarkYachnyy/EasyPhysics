@@ -152,4 +152,8 @@ public class GithubResourceManager {
         }
         return new Test(topic,tasks);
     }
+
+    public String getTableValues(){
+        return executeCall("table_values.txt");
+    }
 }
