@@ -44,9 +44,8 @@ public class TestResultAdapter extends BaseAdapter {
         Task task = (Task) getItem(position);
         ((TextView) convertView.findViewById(R.id.list_item_task_result_given_answer_tv)).setText(task.getGivenAnswer());
         TextView Right_Answer_TV = (TextView) convertView.findViewById(R.id.list_item_task_result_right_answer_tv);
-        Right_Answer_TV.setFocusable(true);
         Right_Answer_TV.setOnClickListener(v -> ((TextView)v).setText(task.getRightAnswer()));
-        ((TextView) convertView.findViewById(R.id.list_item_task_result_title_tv)).setText("Задание "+position);
+        ((TextView) convertView.findViewById(R.id.list_item_task_result_title_tv)).setText("Задание "+(position+1));
         boolean is_answer_right = task.CheckAnswer();
         TextView Is_Answer_Right_TV = (TextView) convertView.findViewById(R.id.list_item_task_result_is_answer_right_tv);
         if(is_answer_right){

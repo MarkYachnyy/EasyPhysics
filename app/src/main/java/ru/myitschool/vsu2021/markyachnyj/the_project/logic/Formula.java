@@ -41,7 +41,9 @@ public class Formula implements Serializable {
         for(String s:numerator){
             result+=s;
         };
-        result+="/";
+        if(denominator.length>0){
+            result+="/";
+        }
         for(String s:denominator){
             result+=s;
         }

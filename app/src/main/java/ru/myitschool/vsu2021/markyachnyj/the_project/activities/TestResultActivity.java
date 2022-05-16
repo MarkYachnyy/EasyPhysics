@@ -7,15 +7,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ru.myitschool.vsu2021.markyachnyj.the_project.Database.DatabaseManager;
 import ru.myitschool.vsu2021.markyachnyj.the_project.R;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Adapters.TestResultAdapter;
+import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.SimpleMessageDialog;
 import ru.myitschool.vsu2021.markyachnyj.the_project.graphics.Views.BasicProgressBarView;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Test;
 import ru.myitschool.vsu2021.markyachnyj.the_project.logic.Topic;
@@ -50,11 +53,20 @@ public class TestResultActivity extends AppCompatActivity {
         adapter = new TestResultAdapter(this,test);
         Title_TV.setText("Тест по теме\""+test.getTopic().getName()+"\" завершён");
         ListView.setAdapter(adapter);
+        ListView.setOnItemClickListener(ListItemListener);
         ProgressBar.setProgress(test.getProgress());
         Progress_TV.setText((Progress_TV.getText().toString()).replace("N",""+(int)(test.getProgress()*100)));
         Close_Btn.setOnClickListener(Close_Btn_Listener);
         manager = new DatabaseManager(this);
     }
+
+    private AdapterView.OnItemClickListener ListItemListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            SimpleMessageDialog dialog = new SimpleMessageDialog(TestResultActivity.this, test.getTasks().get(position).getExercise());
+            dialog.show();
+        }
+    };
 
     private View.OnClickListener Close_Btn_Listener = v -> (new FinishActivityTask()).execute();
 

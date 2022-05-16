@@ -51,11 +51,16 @@ public class FormulaConstructorTask extends Task implements Serializable {
 
     @Override
     public String getGivenAnswer() {
+        if(numerator.isEmpty() && denominator.isEmpty()){
+            return "-";
+        }
         String result="";
         for(String s:numerator){
             result+=s;
         };
-        result+="/";
+        if(!denominator.isEmpty()){
+            result+="/";
+        }
         for(String s:denominator){
             result+=s;
         }

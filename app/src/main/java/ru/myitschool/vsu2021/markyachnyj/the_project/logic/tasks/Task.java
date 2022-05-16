@@ -6,4 +6,5 @@ public abstract class Task implements Serializable {
     public abstract boolean CheckAnswer();
     public abstract String getRightAnswer();
     public abstract String getGivenAnswer();
+    public abstract String getExercise();
 }
