@@ -42,11 +42,15 @@ public class TestResultAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_item_task_result,null);
         }
         Task task = (Task) getItem(position);
+        boolean is_answer_right = task.CheckAnswer();
         ((TextView) convertView.findViewById(R.id.list_item_task_result_given_answer_tv)).setText(task.getGivenAnswer());
         TextView Right_Answer_TV = (TextView) convertView.findViewById(R.id.list_item_task_result_right_answer_tv);
-        Right_Answer_TV.setOnClickListener(v -> ((TextView)v).setText(task.getRightAnswer()));
+        if(is_answer_right){
+            Right_Answer_TV.setText(task.getRightAnswer());
+        } else {
+            Right_Answer_TV.setOnClickListener(v -> ((TextView)v).setText(task.getRightAnswer()));
+        }
         ((TextView) convertView.findViewById(R.id.list_item_task_result_title_tv)).setText("Задание "+(position+1));
-        boolean is_answer_right = task.CheckAnswer();
         TextView Is_Answer_Right_TV = (TextView) convertView.findViewById(R.id.list_item_task_result_is_answer_right_tv);
         if(is_answer_right){
             Is_Answer_Right_TV.setText("Верно");

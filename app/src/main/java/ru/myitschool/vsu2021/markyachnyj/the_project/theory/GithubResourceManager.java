@@ -108,16 +108,21 @@ public class GithubResourceManager {
     }
 
     private UnitChoiceTask getRandomUnitChoiceTask(Topic topic){
-        Measure measure = (Measure) getRandom(gson.fromJson(executeCall(topic.getGrade_number()+"/"+topic.getName()+"/measures.json"),Measure[].class),1).get(0);
-        ArrayList<String> all_units = getAllUnits(topic.getGrade_number());
-        ArrayList<String> extra_units = new ArrayList<>();
-        while (extra_units.size()<3) {
-            String s = (String) getRandom(all_units, 1).get(0);
-            if ((!s.equals(measure.getUnit()) && (!extra_units.contains(s)))) {
-                extra_units.add(s);
+        String s1 = executeCall(topic.getGrade_number()+"/"+topic.getName()+"/measures.json");
+        if(s1.equals("{}\n")){
+            return null;
+        }else{
+            Measure measure = (Measure) getRandom(gson.fromJson(s1,Measure[].class),1).get(0);
+            ArrayList<String> all_units = getAllUnits(topic.getGrade_number());
+            ArrayList<String> extra_units = new ArrayList<>();
+            while (extra_units.size()<3) {
+                String s = (String) getRandom(all_units, 1).get(0);
+                if ((!s.equals(measure.getUnit()) && (!extra_units.contains(s)))) {
+                    extra_units.add(s);
+                }
             }
+            return new UnitChoiceTask(measure, extra_units);
         }
-        return new UnitChoiceTask(measure, extra_units);
     }
 
     private FormulaConstructorTask getRandomFormulaConstructorTask(Topic topic){
@@ -144,9 +149,11 @@ public class GithubResourceManager {
 
     public Test BuildTest(Topic topic){
         ArrayList<Task> tasks = new ArrayList<>();
-
         tasks.add(getRandomFormulaConstructorTask(topic));
-        tasks.add(getRandomUnitChoiceTask(topic));
+        UnitChoiceTask task = getRandomUnitChoiceTask(topic);
+        if(task!=null){
+            tasks.add(task);
+        }
         for(int i=1;i<=3;i++){
             tasks.add(getRandomSimpleAnswerTask(topic,i));
         }
@@ -156,4 +163,5 @@ public class GithubResourceManager {
     public String getTableValues(){
         return executeCall("table_values.txt");
     }
+
 }

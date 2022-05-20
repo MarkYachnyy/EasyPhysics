@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -62,13 +63,13 @@ public class MainMenuActivity extends AppCompatActivity {
                     }
                 }
                 ArrayList<Grade> grades = databaseManager.getAllGrades();
-                for(Grade g:grades){
+                for(Grade g:grades) {
                     int number = g.getNumber();
                     ArrayList<String> topic_names = manager.getTopicArrayList(number);
-                    for(String s:topic_names){
+                    for (String s : topic_names) {
                         boolean b = databaseManager.containsTopic(s);
-                        if(!b){
-                            databaseManager.insertTopic(new Topic(number, s,0f),number);
+                        if (!b) {
+                            databaseManager.insertTopic(new Topic(number, s, 0f), number);
                         }
                     }
                 }
@@ -92,9 +93,8 @@ public class MainMenuActivity extends AppCompatActivity {
         No_Internet_LL = new LinearLayout(this);
         No_Internet_LL.setOrientation(LinearLayout.VERTICAL);
         No_Internet_LL.setGravity(Gravity.CENTER);
-        FrameLayout.LayoutParams lp0 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        FrameLayout.LayoutParams lp0 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         lp0.gravity = Gravity.CENTER;
-        lp0.setMargins(20,0,20,0);
         No_Internet_LL.setLayoutParams(lp0);
         Screen_FL.addView(No_Internet_LL);
         No_Internet_LL.setBackgroundColor(getResources().getColor(R.color.main_bg_green));
