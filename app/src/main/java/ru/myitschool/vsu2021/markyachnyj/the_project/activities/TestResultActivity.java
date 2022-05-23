@@ -77,7 +77,6 @@ public class TestResultActivity extends AppCompatActivity {
             if(manager.getProgress(test.getTopic().getName())<=test.getProgress()){
                 Topic topic = new Topic(test.getTopic().getGrade_number(), test.getTopic().getName(), test.getProgress());
                 manager.updateTopic(topic);
-                manager.invalidateGragesData();
             }
             return null;
         }

@@ -162,7 +162,12 @@ public class GradeChoiceActivity extends AppCompatActivity {
         AlertDialog dialog  =builder.create();
         dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
         ((Button) view.findViewById(R.id.alert_dialog_exit_app_positive_btn)).setOnClickListener(v -> dialog.dismiss());
-        ((Button) view.findViewById(R.id.alert_dialog_settings_app_info_btn)).setOnClickListener(v -> ShowAppInfoAlertDialog());
+        ((Button) view.findViewById(R.id.alert_dialog_exit_app_negative_btn)).setOnClickListener(v -> {
+            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+            homeIntent.addCategory( Intent.CATEGORY_HOME );
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
+        });
         dialog.show();
     }
 

@@ -89,27 +89,24 @@ public class DatabaseManager {
         return false;
     }
 
-    /*public void disintegrate(){
-        database.execSQL("DROP TABLE IF EXISTS " + GRADE_TABLE_NAME);
-    }*/
-
     public void deleteAllGrades(){
         database.delete(GRADE_TABLE_NAME, null, null);
     }
 
-    public int insertTopic(Topic topic, int grade_number){
+    public void insertTopic(Topic topic, int grade_number){
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TOPIC_GRADE_NUMBER, grade_number);
         cv.put(COLUMN_TOPIC_NAME, topic.getName());
         cv.put(COLUMN_TOPIC_TEST_PROGRESS, topic.getProgress());
-        return (int)database.insert(TOPIC_TABLE_NAME,null,cv);
+        database.insert(TOPIC_TABLE_NAME,null,cv);
     }
 
-    public int updateTopic(Topic topic){
+    public void updateTopic(Topic topic){
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TOPIC_NAME, topic.getName());
         cv.put(COLUMN_TOPIC_TEST_PROGRESS, topic.getProgress());
-        return database.update(TOPIC_TABLE_NAME,cv, COLUMN_TOPIC_NAME +" = ?",new String[]{String.valueOf(topic.getName())});
+        database.update(TOPIC_TABLE_NAME,cv, COLUMN_TOPIC_NAME +" = ?",new String[]{String.valueOf(topic.getName())});
+        invalidateGragesData();
     }
 
     public boolean containsTopic(String topic_name){
