@@ -157,7 +157,7 @@ public class DatabaseManager {
         for(Grade g:getAllGrades()){
             int completed=0;
             for(Topic t:getAllTopics(g.getNumber())){
-                if(t.getProgress()>0.9f){
+                if(t.getProgress()==1){
                     completed++;
                 }
             }

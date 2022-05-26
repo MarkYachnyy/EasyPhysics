@@ -17,7 +17,7 @@
             android:textSize="30sp"
             android:gravity="center"
             android:textColor="@color/white"
-            android:text="Тема считается пройденной, если прогресс в тесте по ней составляет не менее 90%"/>
+            android:text="Тема считается пройденной, если прогресс в тесте по ней составляет 100%"/>
         <Button
             android:id="@+id/alert_dialog_topic_choice_info.ok_btn"
             android:layout_width="wrap_content"
